@@ -13,12 +13,32 @@ export default class Profile extends React.Component {
 
     };
 
+    componentDidMount() {
+
+        axios.get('/organisation').then(({data}) => {
+            this.setState({
+                organisationId: data.id,
+                name: data.name,
+                contactFirst: data.contact_first,
+                contactLast: data.contact_last,
+                profilePicUrl: data.image ? awsS3Url + '/' + data.image : '../images/profile.png'
+            })
+        }).catch((error) => {
+            console.log(error);
+        });
+
+    }
+
 
     render() {
         return (
             <div id='profile-container'>
             <NavBar />
-            <p>Profile</p>
+            <div id='profile-content'>
+            <p id='organisation-name'>{this.state.name}</p>
+            <p id='contact-person'> Contact person: {this.state.contactFirst} {this.state.contactLast}</p>
+            <img id='big-profile-pic' src={this.state.profilePicUrl} />
+            </div>
             </div>
         );
     }

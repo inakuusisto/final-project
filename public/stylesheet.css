@@ -34,7 +34,7 @@ main {
     padding: 12px 20px;
     width: 300px;
     border: 1px solid #ccc;
-   border-radius: 10px;
+    border-radius: 10px;
 }
 
 .reg-button {
@@ -89,4 +89,23 @@ li a {
 
 ul a:hover {
     cursor: pointer;
+}
+
+#profile-content {
+    margin-left: 250px;
+    margin-top: 50px;
+}
+
+#organisation-name {
+    font-size: 40px;
+    margin-bottom: 70px;
+}
+
+#big-profile-pic {
+    width: 250px;
+    height: 300px;
+    display: inline-block;
+    float: left;
+    object-fit: cover;
+    margin-top: 50px;
 }

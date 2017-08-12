@@ -39,7 +39,7 @@ app.get('/profile', function(req,res) {
 
 
 app.post('/register', function(req, res) {
-    console.log('tämä on request', req.body);
+    // console.log('tämä on request', req.body);
 
     functions.hashPassword(req.body.password).then(function(hash) {
         functions.addOrganisationData(req.body.name, req.body.contactFirst, req.body.contactLast, req.body.email, hash).then(function(results) {
@@ -90,6 +90,16 @@ app.post('/login', function(req, res) {
 
     }).catch(function(err){
         res.status(500).json({ err: 'Failure'});
+    });
+});
+
+
+app.get('/organisation', function(req, res) {
+    functions.getOrganisationData(req.session.user.email).then(function(results) {
+        console.log('These are the results', results.rows[0]);
+        res.json(results.rows[0]);
+    }).catch(function(err) {
+        console.log(err);
     });
 });
 
