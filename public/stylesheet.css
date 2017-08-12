@@ -58,3 +58,35 @@ main {
     align-items: center;
     margin-top: 50px;
 }
+
+#profile-container {
+    grid-column: 1 / 4;
+}
+
+ul {
+    list-style-type: none;
+    margin-bottom: 30px;
+    margin-left: 20px;
+    margin-right: 20px;
+    padding: 0;
+    overflow: hidden;
+    background-color: pink;
+}
+
+li {
+    float: left;
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding-top: 35px;
+    padding-bottom: 35px;
+    padding-left: 700px;
+    text-decoration: none;
+}
+
+ul a:hover {
+    cursor: pointer;
+}

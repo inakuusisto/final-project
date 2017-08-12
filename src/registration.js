@@ -30,12 +30,6 @@ export default class Registration extends React.Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        alert(this.state.name);
-        alert(this.state.contactFirst);
-        alert(this.state.contactLast);
-        alert(this.state.email);
-        alert(this.state.password);
-
         axios.post('/register', {
             name: this.state.name,
             contactFirst: this.state.contactFirst,
@@ -45,7 +39,7 @@ export default class Registration extends React.Component {
         }).then(({data}) => {
             if(data.success) {
                 console.log('success')
-                // location.replace('/');
+                location.replace('/profile');
             } else {
                 this.setState({
                     error: true
