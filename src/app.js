@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-
+import { NavBar } from './profile';
 
 export default class App extends React.Component {
     constructor(props) {
@@ -12,8 +12,8 @@ export default class App extends React.Component {
     render(props) {
 
         return (
-            <div>
-            <p>houhou</p>
+            <div id='home-container'>
+            <NavBar />
             </div>
         );
     }

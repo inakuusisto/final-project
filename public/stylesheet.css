@@ -4,8 +4,9 @@
 }
 
 body {
-    background-color: #E3E9ED;
+    background-color: #F5F5F5;
     font-family: palatino;
+    color: #444444;
 }
 
 main {
@@ -13,6 +14,10 @@ main {
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 10px;
     grid-auto-rows: minmax(100px, auto);
+}
+
+#home-container {
+    grid-column: 1 / 4;
 }
 
 #reg-container {
@@ -66,25 +71,33 @@ main {
 ul {
     list-style-type: none;
     margin-bottom: 30px;
-    /*margin-left: 20px;
-    margin-right: 20px;*/
-    padding: 0;
-    overflow: hidden;
-    background-color: pink;
+    padding-top: 15px;
+    padding-bottom: 20px;
+    background-color: #CC6666;
+    padding-left: 400px;
 }
 
-li {
+#logo {
+    height: 100px;
+    width: 180px;
     float: left;
+}
+
+#nav-heading {
+    color: white;
+    margin-left: 110px;
+    font-size: 40px;
+    float: left;
+    padding-top: 30px;
 }
 
 li a {
     display: block;
     color: white;
-    text-align: center;
-    padding-top: 35px;
+    padding-top: 40px;
     padding-bottom: 35px;
-    padding-left: 700px;
     text-decoration: none;
+    margin-left: 850px;
 }
 
 ul a:hover {
@@ -168,14 +181,34 @@ h3 {
 
 #post-container {
     margin-left: 380px;
-    margin-top: 60px;
+    margin-top: 80px;
     margin-bottom: 60px;
+}
+
+#description-input {
+    padding: 12px 20px;
+    width: 400px;
+    border: 2px solid #444444;
+    border-radius: 10px;
 }
 
 #message-textarea {
     width: 500px;
     height: 200px;
     border-radius: 10px;
-    /*box-shadow: 0 0 0 3px #000;*/
+    box-shadow: 0 0 0 2px #444444;
     border: 5px solid transparent;
+    margin-top: 30px;
+}
+
+#post-button {
+    height: 30px;
+    width: 120px;
+    background-color: #CC6666;
+    color: white;
+    font: 20px bold;
+    border-radius: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 5px;
 }

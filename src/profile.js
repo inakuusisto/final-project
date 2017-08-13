@@ -134,11 +134,13 @@ export default class Profile extends React.Component {
 }
 
 
-function NavBar() {
+export function NavBar() {
     return (
         <div>
         <ul>
-        <li><Link to='/'>Home</Link></li>
+        <li><img id='logo' src='../images/logo2.png' /></li>
+        <li><p id='nav-heading'>Berlin cares</p></li>
+        <li id='home-link'><Link to='/'>Home</Link></li>
         </ul>
         </div>
     );
@@ -164,7 +166,7 @@ function MakePost(props) {
         <form onSubmit={props.handleSubmit}>
         <input id='description-input' type="text" name="description" value={props.description} onChange={props.handleInputChange} required /><br />
         <textarea id='message-textarea' value={props.messageInput} onChange={props.handleChange} required /><br />
-        <input id="message-button" type="submit" value="Send" />
+        <input id="post-button" type="submit" value="Send" />
         </form>
         </div>
     );
