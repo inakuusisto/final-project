@@ -105,14 +105,18 @@ export default class Profile extends React.Component {
         .then(({data}) => {
             console.log(data);
             if(data.success) {
-                // this.setState({
-                //     editBioVisible: false
-                // })
-                // window.location.reload()
+                this.setState({
+                    showPost: true,
+                    postDescription: data.description,
+                    postMessage: data.message,
+                    messageInput: '',
+                    description: ''
+                })
             }
         }).catch(function (error) {
             console.log(error);
         });
+
     }
 
 
@@ -127,6 +131,7 @@ export default class Profile extends React.Component {
             {this.state.uploadDialogVisible && <ProfilePicUpload submit={this.submit} hidePicUpload={this.hidePicUpload} />}
             </div>
             <div id='clear'></div>
+            {this.state.showPost && <Post postDescription={this.state.postDescription} postMessage={this.state.postMessage} profilePicUrl={this.state.profilePicUrl} name={this.state.name} />}
             <MakePost handleSubmit={this.handleSubmit} value={this.state.messageInput} value={this.state.description} handleChange={this.handleChange} handleInputChange={this.handleInputChange} />
             </div>
         );
@@ -138,7 +143,7 @@ export function NavBar() {
     return (
         <div>
         <ul>
-        <li><img id='logo' src='../images/logo2.png' /></li>
+        <li><img id='logo' src='../images/logo.png' /></li>
         <li><p id='nav-heading'>Berlin cares</p></li>
         <li id='home-link'><Link to='/'>Home</Link></li>
         </ul>
@@ -162,12 +167,32 @@ function ProfilePicUpload(props) {
 
 function MakePost(props) {
     return (
+        <div>
+        <p id='post-text'>Please make your post with a short description here to be shown in the front page</p>
         <div id='post-container'>
         <form onSubmit={props.handleSubmit}>
-        <input id='description-input' type="text" name="description" value={props.description} onChange={props.handleInputChange} required /><br />
-        <textarea id='message-textarea' value={props.messageInput} onChange={props.handleChange} required /><br />
+        <input id='description-input' type="text" name="description" value={props.description} onChange={props.handleInputChange} placeholder="Short description of your need" required /><br />
+        <textarea id='message-textarea' value={props.messageInput} onChange={props.handleChange} placeholder="Your message..." required /><br />
         <input id="post-button" type="submit" value="Send" />
         </form>
         </div>
+        </div>
     );
+}
+
+
+function Post(props) {
+    return (
+        <div>
+        <p id='thanks-for-post-text'>Thank you for your post! </p>
+        <div id='post-made'>
+        <img id='small-profile-pic' src={props.profilePicUrl} alt={props.name} />
+        <div id='post-made-text'>
+        <p id='post-description'>{props.postDescription}</p>
+        <p>{props.postMessage}</p>
+        </div>
+        <div id='clear'></div>
+        </div>
+        </div>
+    )
 }

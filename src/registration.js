@@ -56,8 +56,9 @@ export default class Registration extends React.Component {
     render() {
         return (
             <div id='reg-container'>
+            <img id='logo' src='../images/logo.png' />
             <h1 id='reg-header'>Welcome to register to our site!</h1>
-            <p id='reg-text'>Please fill out the form</p>
+            <p id='reg-text'>Please fill out the following information</p>
             {this.state.error && <p className="error-message">Oops, something went wrong. Please try again!</p>}
             <form onSubmit={this.handleSubmit}>
             <input className='reg-input' type="text" name="name" value={this.state.name} onChange={this.handleInputChange} placeholder="Organisation name" required /><br />
