@@ -144,7 +144,7 @@ export function NavBar() {
         <div>
         <ul>
         <li><img id='logo' src='../images/logo.png' /></li>
-        <li><p id='nav-heading'>Berlin cares</p></li>
+        <li><p id='nav-heading'>Bliiblaa</p></li>
         <li id='home-link'><Link to='/'>Home</Link></li>
         </ul>
         </div>

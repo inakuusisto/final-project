@@ -97,6 +97,11 @@ function addPost(organisationId, description, message) {
 }
 
 
+function getPosts() {
+    return db.query ('SELECT organisations.id, organisations.name, organisations.contact_first, organisations.contact_last, organisations.email, organisations.image, posts.description, posts.message, posts.timestamp FROM organisations JOIN posts ON organisations.id = posts.organisation_id ORDER BY posts.timestamp DESC LIMIT 30');
+}
+
+
 module.exports.hashPassword = hashPassword;
 module.exports.addOrganisationData = addOrganisationData;
 module.exports.getOrganisationData = getOrganisationData;
@@ -104,3 +109,4 @@ module.exports.checkPassword = checkPassword;
 module.exports.sendFile = sendFile;
 module.exports.addImgToDb = addImgToDb;
 module.exports.addPost = addPost;
+module.exports.getPosts = getPosts;

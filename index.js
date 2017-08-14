@@ -25,10 +25,10 @@ app.use(cookieSession({
     maxAge: 1000 * 60 * 60 * 24 * 14
 }));
 
-app.get('/', function(req, res){
-    // res.redirect('/home');
-    res.sendFile(__dirname + '/index.html');
-});
+// app.get('/', function(req, res){
+//     // res.redirect('/home');
+//     res.sendFile(__dirname + '/index.html');
+// });
 
 app.use(express.static(__dirname + '/public/'));
 
@@ -52,9 +52,15 @@ var uploader = multer({
 });
 
 
+app.get('/home', function(req, res){
+    if (req.session.user) {
+        res.redirect('/');
+    } else {
+        res.sendFile(__dirname + '/index.html');
+    }
+});
 
-
-app.get('/profile', function(req,res) {
+app.get('/', function(req,res) {
     if (!req.session.user) {
         res.redirect('/home');
     } else {
@@ -63,7 +69,21 @@ app.get('/profile', function(req,res) {
 });
 
 
-app.post('/register', function(req, res) {
+app.get('/posts', function(req, res) {
+    functions.getPosts().then(function(data) {
+        for (var i=0; i<data.rows.length; i++) {
+            if (data.rows[i].image) {
+                data.rows[i].image = awsS3Url + '/' + data.rows[i].image;
+            }
+        }
+        res.json(data.rows);
+    }).catch(function(err) {
+        console.log(err);
+    });
+});
+
+
+app.get('/register', function(req, res) {
     // console.log('tämä on request', req.body);
 
     functions.hashPassword(req.body.password).then(function(hash) {
@@ -160,6 +180,13 @@ app.post('/post', function (req, res) {
     });
 });
 
+
+app.get('*', function(req, res) {
+    if(!req.session.user) {
+        res.redirect('/home');
+    }
+    res.sendFile(__dirname + '/index.html');
+});
 
 // app.get('*', function(req, res) {
 //     res.redirect('/home');

@@ -20,6 +20,59 @@ main {
     grid-column: 1 / 4;
 }
 
+
+#new-org-button {
+    position: relative;
+    top: 100px;
+    left: 650px;
+    height: 30px;
+    width: 120px;
+    background-color: #CC6666;
+    color: white;
+    font: 20px bold;
+    border-radius: 10px;
+    /*margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 5px;*/
+}
+
+#home-posts-container {
+    position: relative;
+    top: 140px;
+    left: 430px;
+}
+
+.home-post-container {
+    margin-bottom: 40px;
+    width: 600px;
+    border: 1px solid #444444;
+    border-radius: 10px;
+    background-color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+    overflow: hidden;
+}
+
+.home-posts-image {
+    width: 100px;
+    height: 100px;
+    float: left;
+    display: inline-block;
+}
+
+.home-post-text {
+    float: left;
+    display: inline-block;
+    margin-left: 20px;
+    width: 400px;
+}
+
+.home-post-description {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
 #reg-container {
     grid-column: 2;
     grid-row: 1;
@@ -247,7 +300,7 @@ h3 {
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 30px;
-    overflow: auto;
+    overflow: hidden;
 }
 
 #small-profile-pic {
@@ -261,6 +314,7 @@ h3 {
     float: left;
     display: inline-block;
     margin-left: 20px;
+    width: 400px;
 }
 
 #post-description {
