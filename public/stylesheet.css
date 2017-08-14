@@ -40,6 +40,7 @@ main {
     position: relative;
     top: 140px;
     left: 430px;
+    width: 1000px;
 }
 
 .home-post-container {
@@ -173,7 +174,39 @@ ul a:hover {
 
 #organisation-name {
     font-size: 40px;
-    margin-bottom: 70px;
+    margin-bottom: 50px;
+}
+
+#more-info-text {
+    font-size: 20px;
+    margin-top: 40px;
+    color: #CC6666;
+}
+
+.profile-tag {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+    margin-top: 30px;
+}
+
+.edit-button {
+    height: 30px;
+    width: 80px;
+    background-color: #CC6666;
+    color: white;
+    font: 15px bold;
+    border-radius: 10px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    margin-left: 5px;
+}
+
+.profile-edit {
+    font-size: 15px;
+    cursor: pointer;
+    text-decoration: underline;
+    margin-top: 10px;
 }
 
 #big-profile-pic {

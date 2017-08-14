@@ -8,6 +8,7 @@ export default class Home extends React.Component {
         super(props);
         this.state = {};
 
+        this.showMore = this.showMore.bind(this);
     }
 
     componentDidMount() {
@@ -23,6 +24,10 @@ export default class Home extends React.Component {
 
     }
 
+    showMore() {
+        this.setState({showMoreVisible: true})
+    }
+
 
     render(props) {
 
@@ -36,7 +41,7 @@ export default class Home extends React.Component {
             <div id='home-posts-container'>
             {this.state.posts.map((post) =>
                 <div className='home-post-container'>
-                <img className='home-posts-image' src={post.image ? post.image : '../images/profile.png'} />
+                <img className='home-posts-image' src={post.image ? post.image : '../images/profile.png'} onClick={this.showMore} />
                 <div className='home-post-text'>
                 <p className='home-post-description'>{post.description}</p>
                 <p>{post.message}</p>
@@ -50,9 +55,19 @@ export default class Home extends React.Component {
         return (
             <div id='home-container'>
             <NavBar />
-            <button id="new-org-button">New organisation registration</button>
+            {this.state.showMoreVisible && <organisationInfo />}
+            <Link to='/register'><button id="new-org-button">New organisation registration</button></Link>
             {posts}
             </div>
         );
     }
+}
+
+
+function organisationInfo() {
+    return (
+        <div id='more-info'>
+        <p>hello</p>
+        </div>
+    );
 }

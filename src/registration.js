@@ -68,6 +68,7 @@ export default class Registration extends React.Component {
             <input className='reg-input' type='password' name="password" value={this.state.password} onChange={this.handleInputChange} placeholder="Password" required /><br />
             <input className='reg-button' type="submit" value="Submit" />
             </form>
+            <p>If you already have an account, please <Link to='/login'>Login</Link></p>
             </div>
 
         );

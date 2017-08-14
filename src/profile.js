@@ -15,12 +15,6 @@ export default class Profile extends React.Component {
             aboutInput: ''
         };
 
-        this.showUploader = this.showUploader.bind(this);
-        this.hidePicUpload = this.hidePicUpload.bind(this);
-        this.submit = this.submit.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
-        this.handleChange = this.handleChange.bind(this);
-        this.handleInputChange = this.handleInputChange.bind(this);
         this.showEditAddress = this.showEditAddress.bind(this);
         this.handleAddressChange = this.handleAddressChange.bind(this);
         this.editAddress = this.editAddress.bind(this);
@@ -30,6 +24,12 @@ export default class Profile extends React.Component {
         this.showEditAbout = this.showEditAbout.bind(this);
         this.editAbout = this.editAbout.bind(this);
         this.handleAboutChange = this.handleAboutChange.bind(this);
+        this.showUploader = this.showUploader.bind(this);
+        this.hidePicUpload = this.hidePicUpload.bind(this);
+        this.submit = this.submit.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
     };
 
     componentDidMount() {
@@ -233,18 +233,23 @@ export default class Profile extends React.Component {
             <NavBar />
             <div id='profile-content'>
             <p id='organisation-name'>{this.state.name}</p>
-            <p id='contact-person'> Contact person: {this.state.contactFirst} {this.state.contactLast}</p>
-            {!this.state.address && <p onClick={this.showEditAddress}>Add address</p>}
+            <p className='profile-tag'>Contact person:</p>
+            <p> {this.state.contactFirst} {this.state.contactLast}</p>
+            <p id='more-info-text'>Feel free to share some more information about your organisation when the users click on your post on the home-page</p>
+            <p className='profile-tag'>Address:</p>
+            {!this.state.address && <p className='profile-edit' onClick={this.showEditAddress}>Add address</p>}
             {this.state.address && <p>{this.state.address}</p>}
-            {this.state.address && <p onClick={this.showEditAddress}>Edit</p>}
+            {this.state.address && <p className='profile-edit' onClick={this.showEditAddress}>Edit</p>}
             {this.state.editAddressVisible && <AddressEdit editAddress={this.editAddress} value={this.state.addressInput} handleAddressChange={this.handleAddressChange} />}
-            {!this.state.url && <p onClick={this.showEditUrl}>Add website</p>}
+            <p className='profile-tag'>Website:</p>
+            {!this.state.url && <p className='profile-edit' onClick={this.showEditUrl}>Add website</p>}
             {this.state.url && <p>{this.state.url}</p>}
-            {this.state.url && <p onClick={this.showEditUrl}>Edit</p>}
+            {this.state.url && <p className='profile-edit' onClick={this.showEditUrl}>Edit</p>}
             {this.state.editUrlVisible && <UrlEdit editUrl={this.editUrl} value={this.state.urlInput} handleUrlChange={this.handleUrlChange} />}
-            {!this.state.about && <p onClick={this.showEditAbout}>Tell more about your organisation</p>}
+            <p className='profile-tag'>About your organisation:</p>
+            {!this.state.about && <p className='profile-edit' onClick={this.showEditAbout}>Tell more about your organisation</p>}
             {this.state.about && <p>{this.state.about}</p>}
-            {this.state.about && <p onClick={this.showEditAbout}>Edit</p>}
+            {this.state.about && <p className='profile-edit' onClick={this.showEditAbout}>Edit</p>}
             {this.state.editAboutVisible && <AboutEdit editAbout={this.editAbout} value={this.state.aboutInput} handleAboutChange={this.handleAboutChange} />}
             <img id='big-profile-pic' src={this.state.profilePicUrl} alt={this.state.name} onClick={this.showUploader} />
             {this.state.uploadDialogVisible && <ProfilePicUpload submit={this.submit} hidePicUpload={this.hidePicUpload} />}
@@ -275,7 +280,7 @@ function AddressEdit(props) {
     return (
         <form onSubmit={props.editAddress}>
         <input className='reg-input' type="text" name="address" value={props.addressInput} onChange={props.handleAddressChange} /><br />
-        <input type="submit" value="Save" />
+        <input className="edit-button" type="submit" value="Save" />
         </form>
     );
 }
@@ -285,7 +290,7 @@ function UrlEdit(props) {
     return (
         <form onSubmit={props.editUrl}>
         <input className='reg-input' type="text" name="url" value={props.urlInput} onChange={props.handleUrlChange} /><br />
-        <input type="submit" value="Save" />
+        <input className="edit-button" type="submit" value="Save" />
         </form>
     );
 }
@@ -294,7 +299,7 @@ function AboutEdit(props) {
     return (
         <form onSubmit={props.editAbout}>
         <input className='reg-input' type="text" name="about" value={props.aboutInput} onChange={props.handleAboutChange} /><br />
-        <input type="submit" value="Save" />
+        <input className="edit-button" type="submit" value="Save" />
         </form>
     );
 }

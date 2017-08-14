@@ -25,10 +25,6 @@ app.use(cookieSession({
     maxAge: 1000 * 60 * 60 * 24 * 14
 }));
 
-// app.get('/', function(req, res){
-//     // res.redirect('/home');
-//     res.sendFile(__dirname + '/index.html');
-// });
 
 app.use(express.static(__dirname + '/public/'));
 
