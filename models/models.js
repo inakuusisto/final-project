@@ -58,6 +58,19 @@ function checkPassword(textEnteredInLoginForm, hashedPasswordFromDatabase) {
 }
 
 
+function updateAddress(address, id) {
+    return db.query ('UPDATE organisations SET address=$1 WHERE id=$2 returning address',[address, id]);
+}
+
+function updateUrl(url, id) {
+    return db.query ('UPDATE organisations SET url=$1 WHERE id=$2 returning url',[url, id]);
+}
+
+function updateAbout(about, id) {
+    return db.query ('UPDATE organisations SET about=$1 WHERE id=$2 returning about',[about, id]);
+}
+
+
 function sendFile(file) {
     return new Promise (function(resolve, reject) {
 
@@ -106,6 +119,9 @@ module.exports.hashPassword = hashPassword;
 module.exports.addOrganisationData = addOrganisationData;
 module.exports.getOrganisationData = getOrganisationData;
 module.exports.checkPassword = checkPassword;
+module.exports.updateAddress = updateAddress;
+module.exports.updateUrl = updateUrl;
+module.exports.updateAbout = updateAbout;
 module.exports.sendFile = sendFile;
 module.exports.addImgToDb = addImgToDb;
 module.exports.addPost = addPost;

@@ -83,7 +83,7 @@ app.get('/posts', function(req, res) {
 });
 
 
-app.get('/register', function(req, res) {
+app.post('/register', function(req, res) {
     // console.log('tämä on request', req.body);
 
     functions.hashPassword(req.body.password).then(function(hash) {
@@ -143,6 +143,43 @@ app.get('/organisation', function(req, res) {
     functions.getOrganisationData(req.session.user.email).then(function(results) {
         console.log('These are the results', results.rows[0]);
         res.json(results.rows[0]);
+    }).catch(function(err) {
+        console.log(err);
+    });
+});
+
+
+app.post('/address', function(req, res) {
+    functions.updateAddress(req.body.address, req.session.user.organisationId).then(function(results) {
+        res.json({
+            success: true,
+            address: results.rows[0].address
+        });
+    }).catch(function(err) {
+        console.log(err);
+    });
+});
+
+
+app.post('/url', function(req, res) {
+    // console.log(req.body.url)
+    functions.updateUrl(req.body.url, req.session.user.organisationId).then(function(results) {
+        res.json({
+            success: true,
+            url: results.rows[0].url
+        });
+    }).catch(function(err) {
+        console.log(err);
+    });
+});
+
+app.post('/about', function(req, res) {
+    // console.log('#####', req.body.about);
+    functions.updateAbout(req.body.about, req.session.user.organisationId).then(function(results) {
+        res.json({
+            success: true,
+            about: results.rows[0].about
+        });
     }).catch(function(err) {
         console.log(err);
     });

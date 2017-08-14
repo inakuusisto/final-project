@@ -24,9 +24,9 @@ main {
 #new-org-button {
     position: relative;
     top: 100px;
-    left: 650px;
-    height: 30px;
-    width: 120px;
+    left: 590px;
+    height: 50px;
+    width: 300px;
     background-color: #CC6666;
     color: white;
     font: 20px bold;

@@ -50,7 +50,7 @@ export default class Home extends React.Component {
         return (
             <div id='home-container'>
             <NavBar />
-            <button id="new-org-button">Button</button>
+            <button id="new-org-button">New organisation registration</button>
             {posts}
             </div>
         );

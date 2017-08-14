@@ -8,5 +8,8 @@ CREATE TABLE organisations (
     email VARCHAR(100) NOT NULL UNIQUE,
     password VARCHAR(100) NOT NULL,
     image VARCHAR(300),
+    address VARCHAR(300),
+    url TEXT,
+    about VARCHAR(1000),
     timestamp TIMESTAMP DEFAULT NOW()
 );
