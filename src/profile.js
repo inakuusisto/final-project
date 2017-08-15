@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 const awsS3Url = "https://s3.amazonaws.com/inafinal";
 import { Link } from 'react-router';
+import { NavBarLoggedin } from './loggedinHome';
 
 
 export default class Profile extends React.Component {
@@ -281,7 +282,7 @@ export default class Profile extends React.Component {
 
         return (
             <div id='profile-container'>
-            <NavBar />
+            <NavBarLoggedin />
             <div id='profile-content'>
             <p id='organisation-name'>{this.state.name}</p>
             <p className='profile-tag'>Contact person:</p>
@@ -299,7 +300,7 @@ export default class Profile extends React.Component {
             {this.state.editUrlVisible && <UrlEdit editUrl={this.editUrl} value={this.state.urlInput} handleUrlChange={this.handleUrlChange} />}
             <p className='profile-tag'>About your organisation:</p>
             {!this.state.about && <p className='profile-edit' onClick={this.showEditAbout}>Tell more about your organisation</p>}
-            {this.state.about && <p>{this.state.about}</p>}
+            {this.state.about && <p id='about-text'>{this.state.about}</p>}
             {this.state.about && <p className='profile-edit' onClick={this.showEditAbout}>Edit</p>}
             {this.state.editAboutVisible && <AboutEdit editAbout={this.editAbout} value={this.state.aboutInput} handleAboutChange={this.handleAboutChange} />}
             <img id='big-profile-pic' src={this.state.profilePicUrl} alt={this.state.name} onClick={this.showUploader} />
@@ -312,19 +313,6 @@ export default class Profile extends React.Component {
             </div>
         );
     }
-}
-
-
-export function NavBar() {
-    return (
-        <div>
-        <ul>
-        <li><img id='logo' src='../images/logo.png' /></li>
-        <li><p id='nav-heading'>Bliiblaa</p></li>
-        <li id='home-link'><Link to='/'>Home</Link></li>
-        </ul>
-        </div>
-    );
 }
 
 

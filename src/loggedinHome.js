@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import axios from 'axios';
 
-export default class Home extends React.Component {
+export default class LoggedinHome extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -90,14 +90,41 @@ export default class Home extends React.Component {
 
         return (
             <div id='home-container'>
-            <NavBar />
+            <NavBarLoggedin />
             {this.state.showMoreVisible && <MoreInfo imageUrl={this.state.imageUrl} name={this.state.name} description={this.state.description} closeMoreInfo={this.closeMoreInfo} message={this.state.message} about={this.state.about} address={this.state.address} url={this.state.url} />}
-            <Link to='/register'><button id="new-org-button">New organisation registration</button></Link>
             {posts}
             </div>
         );
     }
 }
+
+
+export function NavBarLoggedin() {
+    return (
+        <div id='nav-header-container'>
+        <img id='logo' src='../images/logo.png' />
+        <p id='nav-heading'>Bliiblaa</p>
+        <ul>
+        <li><Link to='/'>Home</Link></li>
+        <li><Link to='/profile'>Profile</Link></li>
+        <li><a href="/logout" className='link'>Log Out</a></li>
+        </ul>
+        </div>
+    );
+}
+
+// export function NavBarLoggedin() {
+//     return (
+//         <div>
+//         <ul>
+//         <li><img id='logo' src='../images/logo.png' /></li>
+//         <li><p id='nav-heading'>Bliiblaa</p></li>
+//         <li id='home-link'><Link to='/'>Home</Link></li>
+//         <li id='profile-link'><Link to='/profile'>Profile</Link></li>
+//         </ul>
+//         </div>
+//     );
+// }
 
 
 function MoreInfo(props) {
@@ -118,31 +145,3 @@ function MoreInfo(props) {
         </div>
     );
 }
-
-
-
-function NavBar() {
-    return (
-        <div id='nav-header-container'>
-        <img id='logo' src='../images/logo.png' />
-        <p id='nav-heading'>Bliiblaa</p>
-        </div>
-    );
-}
-
-
-
-//
-// const posts = (
-//     <div id='home-posts-container'>
-//     {this.state.posts.map((post) =>
-//         <div className='home-post-container'>
-//         <img className='home-posts-image' src={post.image ? post.image : '../images/profile.png'} ref={elem => this.elem = elem} onClick={this.showMore} />
-//         <div className='home-post-text'>
-//         <p className='home-post-description'>{post.description}</p>
-//         <p>{post.message}</p>
-//         </div>
-//         </div>
-//     )}
-//     </div>
-// )

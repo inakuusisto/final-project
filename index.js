@@ -275,6 +275,12 @@ app.post('/delete', function(req, res) {
 });
 
 
+app.get('/logout', function(req, res) {
+    req.session = null;
+    res.redirect('/home');
+});
+
+
 app.get('*', function(req, res) {
     if(!req.session.user) {
         res.redirect('/home');

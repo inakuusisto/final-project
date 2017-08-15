@@ -5,6 +5,7 @@ import Home from './home';
 import Registration from './registration';
 import Login from './login';
 import Profile from './profile';
+import LoggedinHome from './loggedinHome';
 
 
 if (location.pathname == '/home') {
@@ -22,7 +23,7 @@ if (location.pathname == '/home') {
 
     const router = (
         <Router history={browserHistory}>
-        <Route path="/" component={Home} />
+        <Route path="/" component={LoggedinHome} />
         <Route path="/profile" component={Profile} />
         </Router>
     );
