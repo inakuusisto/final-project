@@ -77,7 +77,7 @@ export default class Home extends React.Component {
         const posts = (
             <div id='home-posts-container'>
             {this.state.posts.map((post) =>
-                <div className='home-post-container' key={post.id} onClick={this.getComponent.bind(this, post)}>
+                <div className='home-post-container' onClick={this.getComponent.bind(this, post)}>
                 <img className='home-posts-image' src={post.image ? post.image : '../images/profile.png'} alt={post.name} />
                 <div className='home-post-text'>
                 <p className='home-post-description'>{post.description}</p>
