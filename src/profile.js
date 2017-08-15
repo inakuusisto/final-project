@@ -49,7 +49,17 @@ export default class Profile extends React.Component {
             console.log(error);
         });
 
+
+        axios.get('/ownposts').then(({data}) => {
+            // console.log('postdata', data);
+            this.setState({
+                ownPosts: data
+            })
+        }).catch((error) => {
+            console.log(error);
+        });
     }
+
 
     showEditAddress() {
         this.setState({editAddressVisible: true})
@@ -99,6 +109,22 @@ export default class Profile extends React.Component {
     handleInputChange(event) {
         this.setState({
             description: event.target.value
+        });
+    }
+
+
+    deletePost(object) {
+
+        axios.post('/delete', {
+            postId: object.id
+        })
+        .then(({data}) => {
+            console.log(data);
+            this.setState({
+                ownPosts: data
+            })
+        }).catch((error) => {
+            console.log(error);
         });
     }
 
@@ -216,6 +242,7 @@ export default class Profile extends React.Component {
                     showPost: true,
                     postDescription: data.description,
                     postMessage: data.message,
+                    ownPosts: data.data,
                     messageInput: '',
                     description: ''
                 })
@@ -227,7 +254,30 @@ export default class Profile extends React.Component {
     }
 
 
-    render() {
+    render(props) {
+
+        if(!this.state.ownPosts) {
+            return null;
+        }
+
+        console.log(this.state.ownPosts);
+
+        const ownPosts = (
+            <div id='home-posts-container'>
+            {this.state.ownPosts.map((post) =>
+                <div className='home-post-container'>
+                <img className='home-posts-image' src={this.state.profilePicUrl} alt={this.state.name} />
+                <div className='home-post-text'>
+                <p className='home-post-description'>{post.description}</p>
+                <p>{post.message}</p>
+                <p id='delete-post' onClick={this.deletePost.bind(this, post)}>Delete post</p>
+                </div>
+                </div>
+            )}
+            </div>
+        )
+
+
         return (
             <div id='profile-container'>
             <NavBar />
@@ -257,6 +307,7 @@ export default class Profile extends React.Component {
             <div id='clear'></div>
             {this.state.showPost && <Post postDescription={this.state.postDescription} postMessage={this.state.postMessage} profilePicUrl={this.state.profilePicUrl} name={this.state.name} />}
             <MakePost handleSubmit={this.handleSubmit} value={this.state.messageInput} value={this.state.description} handleChange={this.handleChange} handleInputChange={this.handleInputChange} />
+            {ownPosts}
             </div>
         );
     }
@@ -349,3 +400,22 @@ function Post(props) {
         </div>
     )
 }
+
+
+
+
+//
+//
+// const ownPosts = (
+//     <div id='home-posts-container'>
+//     {this.state.ownPosts.map((post) =>
+//         <div className='home-post-container'>
+//         <img className='home-posts-image' src={this.state.profilePicUrl} alt={this.state.name} />
+//         <div className='home-post-text'>
+//         <p className='home-post-description'>{post.description}</p>
+//         <p>{post.message}</p>
+//         </div>
+//         </div>
+//     )}
+//     </div>
+// )

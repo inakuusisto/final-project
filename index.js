@@ -136,9 +136,25 @@ app.post('/login', function(req, res) {
 
 
 app.get('/organisation', function(req, res) {
+    // console.log('######organisation')
     functions.getOrganisationData(req.session.user.email).then(function(results) {
-        console.log('These are the results', results.rows[0]);
+        // console.log('These are the results', results.rows[0]);
         res.json(results.rows[0]);
+    }).catch(function(err) {
+        console.log(err);
+    });
+});
+
+
+app.get('/ownposts', function(req, res) {
+    // console.log('####ownposts');
+    functions.getOwnPosts(req.session.user.organisationId).then(function(data) {
+        for (var i=0; i<data.rows.length; i++) {
+            if (data.rows[i].image) {
+                data.rows[i].image = awsS3Url + '/' + data.rows[i].image;
+            }
+        }
+        res.json(data.rows);
     }).catch(function(err) {
         console.log(err);
     });
@@ -201,12 +217,57 @@ app.post('/upload', uploader.single('file'), function(req, res) {
 
 
 app.post('/post', function (req, res) {
-    console.log(req.body);
-    functions.addPost(req.body.organisationId, req.body.description, req.body.message).then(function() {
-        res.json({
-            success: true,
-            description: req.body.description,
-            message: req.body.message
+    // console.log(req.body);
+    functions.addPost(req.body.organisationId, req.body.description, req.body.message).then(function(results) {
+        functions.getOwnPosts(req.body.organisationId).then(function(data) {
+            console.log('nämä on omat posts', data.rows);
+            for (var i=0; i<data.rows.length; i++) {
+                if (data.rows[i].image) {
+                    data.rows[i].image = awsS3Url + '/' + data.rows[i].image;
+                }
+            }
+            res.json({
+                success: true,
+                description: req.body.description,
+                message: req.body.message,
+                data: data.rows
+            });
+        }).catch(function(err) {
+            console.log(err);
+        });
+    }).catch(function(err) {
+        console.log(err);
+    });
+});
+
+//                  TÄMÄ TOIMII
+//
+// app.post('/post', function (req, res) {
+//     console.log(req.body);
+//     functions.addPost(req.body.organisationId, req.body.description, req.body.message).then(function() {
+//         res.json({
+//             success: true,
+//             description: req.body.description,
+//             message: req.body.message
+//         });
+//     }).catch(function(err) {
+//         console.log(err);
+//     });
+// });
+
+
+app.post('/delete', function(req, res) {
+    console.log('#####', req.body.postId);
+    functions.deletePost(req.body.postId).then(function(results) {
+        functions.getOwnPosts(results.rows[0].organisation_id).then(function(data) {
+            for (var i=0; i<data.rows.length; i++) {
+                if (data.rows[i].image) {
+                    data.rows[i].image = awsS3Url + '/' + data.rows[i].image;
+                }
+            }
+            res.json(data.rows);
+        }).catch(function(err) {
+            console.log(err);
         });
     }).catch(function(err) {
         console.log(err);

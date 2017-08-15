@@ -98,7 +98,7 @@ function sendFile(file) {
 
 function addImgToDb(image, id) {
     return new Promise (function(resolve, reject) {
-        db.query ('UPDATE organisations SET image=$1 WHERE id=$2',[image, id])
+        db.query ('UPDATE organisations SET image=$1 WHERE id=$2',[image, id]);
 
     }).catch(function(err) {
         console.log(err);
@@ -115,6 +115,15 @@ function getPostsAndInfo() {
 }
 
 
+function getOwnPosts(organisationId) {
+    return db.query ('SELECT * FROM posts WHERE organisation_id=$1 ORDER BY timestamp DESC', [organisationId]);
+}
+
+function deletePost(postId) {
+    return db.query ('DELETE FROM posts WHERE id=$1 returning organisation_id', [postId]);
+}
+
+
 module.exports.hashPassword = hashPassword;
 module.exports.addOrganisationData = addOrganisationData;
 module.exports.getOrganisationData = getOrganisationData;
@@ -126,3 +135,5 @@ module.exports.sendFile = sendFile;
 module.exports.addImgToDb = addImgToDb;
 module.exports.addPost = addPost;
 module.exports.getPostsAndInfo = getPostsAndInfo;
+module.exports.getOwnPosts = getOwnPosts;
+module.exports.deletePost = deletePost;
