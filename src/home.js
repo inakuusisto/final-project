@@ -45,6 +45,11 @@ export default class Home extends React.Component {
         })
     }
 
+
+    componentDidUpdate() {
+        window.scrollTo(0,0);
+    }
+
     getComponent(object) {
 
         // alert(object.id);
