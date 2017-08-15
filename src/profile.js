@@ -263,7 +263,8 @@ export default class Profile extends React.Component {
         console.log(this.state.ownPosts);
 
         const ownPosts = (
-            <div id='home-posts-container'>
+            <div id='profile-posts-container'>
+            <p id='profile-post-text'>Manage your previous posts</p>
             {this.state.ownPosts.map((post) =>
                 <div className='home-post-container'>
                 <img className='home-posts-image' src={this.state.profilePicUrl} alt={this.state.name} />

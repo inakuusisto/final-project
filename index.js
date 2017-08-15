@@ -220,7 +220,7 @@ app.post('/post', function (req, res) {
     // console.log(req.body);
     functions.addPost(req.body.organisationId, req.body.description, req.body.message).then(function(results) {
         functions.getOwnPosts(req.body.organisationId).then(function(data) {
-            console.log('nämä on omat posts', data.rows);
+            // console.log('nämä on omat posts', data.rows);
             for (var i=0; i<data.rows.length; i++) {
                 if (data.rows[i].image) {
                     data.rows[i].image = awsS3Url + '/' + data.rows[i].image;
@@ -257,7 +257,7 @@ app.post('/post', function (req, res) {
 
 
 app.post('/delete', function(req, res) {
-    console.log('#####', req.body.postId);
+    // console.log('#####', req.body.postId);
     functions.deletePost(req.body.postId).then(function(results) {
         functions.getOwnPosts(results.rows[0].organisation_id).then(function(data) {
             for (var i=0; i<data.rows.length; i++) {

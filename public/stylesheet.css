@@ -325,7 +325,7 @@ h3 {
 #post-container {
     margin-left: 350px;
     margin-top: 50px;
-    margin-bottom: 60px;
+    margin-bottom: 10px;
 }
 
 #description-input {
@@ -399,4 +399,18 @@ h3 {
 #delete-post {
     cursor: pointer;
     text-decoration: underline;
+}
+
+#profile-posts-container {
+    position: relative;
+    top: 50px;
+    left: 430px;
+    width: 1000px;
+}
+
+#profile-post-text {
+    font-size: 20px;
+    margin-bottom: 50px;
+    color: #CC6666;
+    margin-left: 160px;
 }
