@@ -6,9 +6,17 @@ import axios from 'axios';
 export default class Home extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {};
+        this.state = {
+            imageUrl: '',
+            name: '',
+            description: '',
+            message: '',
+            about: '',
+            address: ''
+        };
 
-        // this.showMore = this.showMore.bind(this);
+        this.closeMoreInfo = this.closeMoreInfo.bind(this);
+
     }
 
     componentDidMount() {
@@ -24,17 +32,30 @@ export default class Home extends React.Component {
 
     }
 
-    getComponent(object) {
-        alert(object.id);
-        alert(object.message);
-        this.setState({showMoreVisible: true})
+    closeMoreInfo() {
+        this.setState({
+            showMoreVisible: false,
+            imageUrl: '',
+            name: '',
+            description: '',
+            about: '',
+            address: ''
+        })
     }
 
-    // showMore() {
-    //
-    //     alert('hello');
-    //     // this.setState({showMoreVisible: true})
-    // }
+    getComponent(object) {
+
+        // alert(object.id);
+        this.setState({
+            showMoreVisible: true,
+            imageUrl: object.image,
+            name: object.name,
+            description: object.description,
+            message: object.message,
+            about: object.about,
+            address: object.address
+        })
+    }
 
 
     render(props) {
@@ -49,7 +70,7 @@ export default class Home extends React.Component {
             <div id='home-posts-container'>
             {this.state.posts.map((post) =>
                 <div className='home-post-container' key={post.id} onClick={this.getComponent.bind(this, post)}>
-                <img className='home-posts-image' src={post.image ? post.image : '../images/profile.png'} />
+                <img className='home-posts-image' src={post.image ? post.image : '../images/profile.png'} alt={post.name} />
                 <div className='home-post-text'>
                 <p className='home-post-description'>{post.description}</p>
                 <p>{post.message}</p>
@@ -63,7 +84,7 @@ export default class Home extends React.Component {
         return (
             <div id='home-container'>
             <NavBar />
-            {this.state.showMoreVisible && <organisationInfo />}
+            {this.state.showMoreVisible && <MoreInfo imageUrl={this.state.imageUrl} name={this.state.name} description={this.state.description} closeMoreInfo={this.closeMoreInfo} message={this.state.message} about={this.state.about} address={this.state.address} />}
             <Link to='/register'><button id="new-org-button">New organisation registration</button></Link>
             {posts}
             </div>
@@ -72,11 +93,18 @@ export default class Home extends React.Component {
 }
 
 
-function organisationInfo() {
+function MoreInfo(props) {
     return (
-        <div>
-        <img id='logo' src='../images/logo.png' />
-        <p>hello</p>
+        <div id='more-info-container'>
+        <img id='more-info-image' src={props.imageUrl} alt={props.name} />
+        <div id='more-text'>
+        <p id='more-info-description'>{props.description}</p>
+        <p id='more-info-message'>{props.message}</p>
+        <p id='more-info-about'>{props.about}</p>
+        {props.address && <p className='profile-tag'>Address:</p>}
+        {props.address && <p id='more-info-address'>{props.address}</p>}
+        <p id="hide-more-info" onClick={props.closeMoreInfo}>Close</p>
+        </div>
         </div>
     );
 }

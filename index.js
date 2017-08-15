@@ -66,7 +66,7 @@ app.get('/', function(req,res) {
 
 
 app.get('/posts', function(req, res) {
-    functions.getPosts().then(function(data) {
+    functions.getPostsAndInfo().then(function(data) {
         for (var i=0; i<data.rows.length; i++) {
             if (data.rows[i].image) {
                 data.rows[i].image = awsS3Url + '/' + data.rows[i].image;

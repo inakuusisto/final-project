@@ -23,7 +23,7 @@ main {
 
 #new-org-button {
     position: relative;
-    top: 100px;
+    top: 140px;
     left: 590px;
     height: 50px;
     width: 300px;
@@ -38,7 +38,7 @@ main {
 
 #home-posts-container {
     position: relative;
-    top: 140px;
+    top: 160px;
     left: 430px;
     width: 1000px;
 }
@@ -72,6 +72,46 @@ main {
 .home-post-description {
     font-weight: bold;
     margin-bottom: 10px;
+}
+
+#more-info-container {
+    position: relative;
+    top: 100px;
+    left: 340px;
+    width: 800px;
+    border: 1px solid #444444;
+    border-radius: 10px;
+    background-color: white;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 30px;
+    overflow: hidden;
+}
+
+#more-info-image {
+    width: 200px;
+    height: 200px;
+    float: left;
+    display: inline-block;
+}
+
+#more-text {
+    float: left;
+    display: inline-block;
+    margin-left: 60px;
+    width: 400px;
+}
+
+#more-info-description {
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+#hide-more-info {
+    cursor: pointer;
+    font-size: 20px;
+    margin-top: 20px;
+    text-decoration: underline;
 }
 
 #reg-container {
