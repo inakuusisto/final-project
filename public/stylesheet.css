@@ -60,6 +60,7 @@ main {
     height: 100px;
     float: left;
     display: inline-block;
+    cursor: pointer;
 }
 
 .home-post-text {

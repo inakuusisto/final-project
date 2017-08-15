@@ -12,7 +12,8 @@ export default class Home extends React.Component {
             description: '',
             message: '',
             about: '',
-            address: ''
+            address: '',
+            url: ''
         };
 
         this.closeMoreInfo = this.closeMoreInfo.bind(this);
@@ -39,7 +40,8 @@ export default class Home extends React.Component {
             name: '',
             description: '',
             about: '',
-            address: ''
+            address: '',
+            url: ''
         })
     }
 
@@ -53,7 +55,8 @@ export default class Home extends React.Component {
             description: object.description,
             message: object.message,
             about: object.about,
-            address: object.address
+            address: object.address,
+            url: object.url
         })
     }
 
@@ -84,7 +87,7 @@ export default class Home extends React.Component {
         return (
             <div id='home-container'>
             <NavBar />
-            {this.state.showMoreVisible && <MoreInfo imageUrl={this.state.imageUrl} name={this.state.name} description={this.state.description} closeMoreInfo={this.closeMoreInfo} message={this.state.message} about={this.state.about} address={this.state.address} />}
+            {this.state.showMoreVisible && <MoreInfo imageUrl={this.state.imageUrl} name={this.state.name} description={this.state.description} closeMoreInfo={this.closeMoreInfo} message={this.state.message} about={this.state.about} address={this.state.address} url={this.state.url} />}
             <Link to='/register'><button id="new-org-button">New organisation registration</button></Link>
             {posts}
             </div>
@@ -100,9 +103,12 @@ function MoreInfo(props) {
         <div id='more-text'>
         <p id='more-info-description'>{props.description}</p>
         <p id='more-info-message'>{props.message}</p>
-        <p id='more-info-about'>{props.about}</p>
+        {props.about && <p className='profile-tag'>About us:</p>}
+        {props.about && <p>{props.about}</p>}
         {props.address && <p className='profile-tag'>Address:</p>}
-        {props.address && <p id='more-info-address'>{props.address}</p>}
+        {props.address && <p>{props.address}</p>}
+        {props.url && <p className='profile-tag'>Website:</p>}
+        {props.url && <p>{props.url}</p>}
         <p id="hide-more-info" onClick={props.closeMoreInfo}>Close</p>
         </div>
         </div>

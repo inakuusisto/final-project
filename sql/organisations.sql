@@ -13,11 +13,3 @@ CREATE TABLE organisations (
     about VARCHAR(1000),
     timestamp TIMESTAMP DEFAULT NOW()
 );
-
-
-SELECT organisations.id, organisations.name, organisations.contact_first, organisations.contact_last, organisations.email, organisations.image, organisations.address, organisations.url, organisations.about, posts.description, posts.message, posts.timestamp
-FROM organisations
-JOIN posts
-ON organisations.id = posts.organisation_id
-ORDER BY posts.timestamp
-DESC LIMIT 30
