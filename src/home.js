@@ -8,7 +8,7 @@ export default class Home extends React.Component {
         super(props);
         this.state = {};
 
-        this.showMore = this.showMore.bind(this);
+        // this.showMore = this.showMore.bind(this);
     }
 
     componentDidMount() {
@@ -24,9 +24,17 @@ export default class Home extends React.Component {
 
     }
 
-    showMore() {
+    getComponent(object) {
+        alert(object.id);
+        alert(object.message);
         this.setState({showMoreVisible: true})
     }
+
+    // showMore() {
+    //
+    //     alert('hello');
+    //     // this.setState({showMoreVisible: true})
+    // }
 
 
     render(props) {
@@ -40,8 +48,8 @@ export default class Home extends React.Component {
         const posts = (
             <div id='home-posts-container'>
             {this.state.posts.map((post) =>
-                <div className='home-post-container'>
-                <img className='home-posts-image' src={post.image ? post.image : '../images/profile.png'} onClick={this.showMore} />
+                <div className='home-post-container' key={post.id} onClick={this.getComponent.bind(this, post)}>
+                <img className='home-posts-image' src={post.image ? post.image : '../images/profile.png'} />
                 <div className='home-post-text'>
                 <p className='home-post-description'>{post.description}</p>
                 <p>{post.message}</p>
@@ -66,8 +74,27 @@ export default class Home extends React.Component {
 
 function organisationInfo() {
     return (
-        <div id='more-info'>
+        <div>
+        <img id='logo' src='../images/logo.png' />
         <p>hello</p>
         </div>
     );
 }
+
+
+
+
+//
+// const posts = (
+//     <div id='home-posts-container'>
+//     {this.state.posts.map((post) =>
+//         <div className='home-post-container'>
+//         <img className='home-posts-image' src={post.image ? post.image : '../images/profile.png'} ref={elem => this.elem = elem} onClick={this.showMore} />
+//         <div className='home-post-text'>
+//         <p className='home-post-description'>{post.description}</p>
+//         <p>{post.message}</p>
+//         </div>
+//         </div>
+//     )}
+//     </div>
+// )
