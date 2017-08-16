@@ -16,7 +16,7 @@ export default class Home extends React.Component {
             organisationId: '',
             senderName: '',
             senderEmail: '',
-            header: '',
+            subject: '',
             privateMessage: ''
         };
 
@@ -119,7 +119,7 @@ export default class Home extends React.Component {
         event.preventDefault();
         // alert(this.state.senderName);
         // alert(this.state.senderEmail);
-        // alert(this.state.header);
+        // alert(this.state.subject);
         // alert(this.state.privateMessage);
         // alert(this.state.organisationId);
 
@@ -127,7 +127,7 @@ export default class Home extends React.Component {
             organisationId: this.state.organisationId,
             senderName: this.state.senderName,
             senderEmail: this.state.senderEmail,
-            header: this.state.header,
+            subject: this.state.subject,
             privateMessage: this.state.privateMessage
         })
         .then(({data}) => {
@@ -137,7 +137,7 @@ export default class Home extends React.Component {
                     organisationId: '',
                     senderName: '',
                     senderEmail: '',
-                    header: '',
+                    subject: '',
                     privateMessage: '',
                     showContactVisible: false,
                     showThankYou: true
@@ -166,8 +166,8 @@ export default class Home extends React.Component {
                 <div className='home-post-text'>
                 <p className='home-post-description'>{post.description}</p>
                 <p>{post.message}</p>
-                <p onClick={this.getComponent.bind(this, post)}>More</p>
-                <p onClick={this.startContact.bind(this, post)}>Contact</p>
+                <p id='home-more' onClick={this.getComponent.bind(this, post)}>More</p>
+                <p id='home-contact' onClick={this.startContact.bind(this, post)}>Contact</p>
                 </div>
                 </div>
             )}
@@ -195,7 +195,7 @@ export default class Home extends React.Component {
             </div>
             </div>
             {this.state.showMoreVisible && <MoreInfo imageUrl={this.state.imageUrl} name={this.state.name} description={this.state.description} closeMoreInfo={this.closeMoreInfo} message={this.state.message} about={this.state.about} address={this.state.address} url={this.state.url} />}
-            {this.state.showContactVisible && <ContactForm handleSubmit={this.handleSubmit} value={this.state.senderName} value={this.state.senderEmail} value={this.state.header} value={this.state.privateMessage} closeContactForm={this.closeContactForm} handleChange={this.handleChange} handleInputChange={this.handleInputChange} />}
+            {this.state.showContactVisible && <ContactForm handleSubmit={this.handleSubmit} value={this.state.senderName} value={this.state.senderEmail} value={this.state.subject} value={this.state.privateMessage} closeContactForm={this.closeContactForm} handleChange={this.handleChange} handleInputChange={this.handleInputChange} />}
             {this.state.showThankYou && <ThankYou hideThankYou={this.hideThankYou} />}
             <Link to='/register'><button id="new-org-button">Organisation registration</button></Link>
             {posts}
@@ -244,7 +244,7 @@ function ContactForm(props) {
         <form onSubmit={props.handleSubmit}>
         <input id='description-input' type="text" name="senderName" value={props.senderName} onChange={props.handleInputChange} placeholder="Name" required /><br />
         <input id='description-input' type="text" name="senderEmail" value={props.senderEmail} onChange={props.handleInputChange} placeholder="Email" required /><br />
-        <input id='description-input' type="text" name="header" value={props.header} onChange={props.handleInputChange} placeholder="Header" required /><br />
+        <input id='description-input' type="text" name="subject" value={props.subject} onChange={props.handleInputChange} placeholder="Subject" required /><br />
         <textarea id='message-textarea' value={props.privateMessage} onChange={props.handleChange} placeholder="Your message..." required /><br />
         <input id="post-button" type="submit" value="Send" />
         </form>

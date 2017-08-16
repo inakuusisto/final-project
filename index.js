@@ -81,7 +81,7 @@ app.get('/posts', function(req, res) {
 
 app.post('/message', function (req, res) {
     console.log('#####', req.body);
-    functions.addMessage(req.body.organisationId, req.body.senderName, req.body.senderEmail, req.body.header, req.body.privateMessage).then(function() {
+    functions.addMessage(req.body.organisationId, req.body.senderName, req.body.senderEmail, req.body.subject, req.body.privateMessage).then(function() {
         res.json({
             success: true
         });
@@ -282,6 +282,16 @@ app.post('/delete', function(req, res) {
         }).catch(function(err) {
             console.log(err);
         });
+    }).catch(function(err) {
+        console.log(err);
+    });
+});
+
+
+app.get('/privatemessages', function(req, res) {
+    functions.getPrivateMessages(req.session.user.organisationId).then(function(data) {
+        console.log(data);
+        res.json(data.rows);
     }).catch(function(err) {
         console.log(err);
     });

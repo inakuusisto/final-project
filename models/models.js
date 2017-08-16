@@ -124,8 +124,12 @@ function deletePost(postId) {
 }
 
 
-function addMessage(organisationId, senderName, senderEmail, header, message) {
-    return db.query ('INSERT INTO messages(organisation_id, sender_name, sender_email, header, private_message) values($1, $2, $3, $4, $5)', [organisationId, senderName, senderEmail, header, message]);
+function addMessage(organisationId, senderName, senderEmail, subject, message) {
+    return db.query ('INSERT INTO messages(organisation_id, sender_name, sender_email, subject, private_message) values($1, $2, $3, $4, $5)', [organisationId, senderName, senderEmail, subject, message]);
+}
+
+function getPrivateMessages(organisationId) {
+    return db.query ('SELECT * FROM messages WHERE organisation_id=$1 ORDER BY timestamp DESC', [organisationId]);
 }
 
 
@@ -143,3 +147,4 @@ module.exports.getPostsAndInfo = getPostsAndInfo;
 module.exports.getOwnPosts = getOwnPosts;
 module.exports.deletePost = deletePost;
 module.exports.addMessage = addMessage;
+module.exports.getPrivateMessages = getPrivateMessages;
