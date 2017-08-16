@@ -87,6 +87,8 @@ export default class Home extends React.Component {
         this.setState({
             showContactVisible: true,
             organisationId: object.id,
+            imageUrl: object.image,
+            name: object.name,
             showMoreVisible: false
         })
     }
@@ -94,7 +96,9 @@ export default class Home extends React.Component {
     closeContactForm() {
         this.setState({
             showContactVisible: false,
-            organisationId: ''
+            organisationId: '',
+            imageUrl: '',
+            name: ''
         })
     }
 
@@ -117,11 +121,6 @@ export default class Home extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        // alert(this.state.senderName);
-        // alert(this.state.senderEmail);
-        // alert(this.state.subject);
-        // alert(this.state.privateMessage);
-        // alert(this.state.organisationId);
 
         axios.post('/message', {
             organisationId: this.state.organisationId,
@@ -166,8 +165,9 @@ export default class Home extends React.Component {
                 <div className='home-post-text'>
                 <p className='home-post-description'>{post.description}</p>
                 <p>{post.message}</p>
-                <p id='home-more' onClick={this.getComponent.bind(this, post)}>More</p>
-                <p id='home-contact' onClick={this.startContact.bind(this, post)}>Contact</p>
+                <p className='home-more' onClick={this.getComponent.bind(this, post)}>View</p>
+                <p className='home-contact' onClick={this.startContact.bind(this, post)}>Contact</p>
+                <div id='clear'></div>
                 </div>
                 </div>
             )}
@@ -195,7 +195,7 @@ export default class Home extends React.Component {
             </div>
             </div>
             {this.state.showMoreVisible && <MoreInfo imageUrl={this.state.imageUrl} name={this.state.name} description={this.state.description} closeMoreInfo={this.closeMoreInfo} message={this.state.message} about={this.state.about} address={this.state.address} url={this.state.url} />}
-            {this.state.showContactVisible && <ContactForm handleSubmit={this.handleSubmit} value={this.state.senderName} value={this.state.senderEmail} value={this.state.subject} value={this.state.privateMessage} closeContactForm={this.closeContactForm} handleChange={this.handleChange} handleInputChange={this.handleInputChange} />}
+            {this.state.showContactVisible && <ContactForm imageUrl={this.state.imageUrl} name={this.state.name} handleSubmit={this.handleSubmit} value={this.state.senderName} value={this.state.senderEmail} value={this.state.subject} value={this.state.privateMessage} closeContactForm={this.closeContactForm} handleChange={this.handleChange} handleInputChange={this.handleInputChange} />}
             {this.state.showThankYou && <ThankYou hideThankYou={this.hideThankYou} />}
             <Link to='/register'><button id="new-org-button">Organisation registration</button></Link>
             {posts}
@@ -239,13 +239,17 @@ function NavBar() {
 function ContactForm(props) {
     return (
         <div id='contact-form-container'>
-        <p>Send a message to the organisation</p>
-        <div>
+        <div id='contact-form-image-text-container'>
+        <img id='contact-form-image' src={props.imageUrl} alt={props.name} />
+        <p id='contact-form-name'>{props.name}</p>
+        </div>
+        <div id='contact-form'>
+        <p id='contact-form-header'>Send a message to this organisation</p>
         <form onSubmit={props.handleSubmit}>
-        <input id='description-input' type="text" name="senderName" value={props.senderName} onChange={props.handleInputChange} placeholder="Name" required /><br />
-        <input id='description-input' type="text" name="senderEmail" value={props.senderEmail} onChange={props.handleInputChange} placeholder="Email" required /><br />
-        <input id='description-input' type="text" name="subject" value={props.subject} onChange={props.handleInputChange} placeholder="Subject" required /><br />
-        <textarea id='message-textarea' value={props.privateMessage} onChange={props.handleChange} placeholder="Your message..." required /><br />
+        <input className='contact-form-input' type="text" name="senderName" value={props.senderName} onChange={props.handleInputChange} placeholder="Name" required /><br />
+        <input className='contact-form-input' type="text" name="senderEmail" value={props.senderEmail} onChange={props.handleInputChange} placeholder="Email" required /><br />
+        <input className='contact-form-input' type="text" name="subject" value={props.subject} onChange={props.handleInputChange} placeholder="Subject" required /><br />
+        <textarea id='contact-form-textarea' value={props.privateMessage} onChange={props.handleChange} placeholder="Your message..." required /><br />
         <input id="post-button" type="submit" value="Send" />
         </form>
         <p id="hide-more-info" onClick={props.closeContactForm}>Close</p>
