@@ -20,6 +20,42 @@ main {
     grid-column: 1 / 4;
 }
 
+
+#home-about-container {
+    position: relative;
+    top: 40px;
+    left: 450px;
+    width: 600px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+h2 {
+    margin-bottom: 15px;
+}
+
+#home-berliner-text {
+    width: 300px;
+    padding-right: 30px;
+}
+
+#home-organisation-text {
+    padding-left: 10px;
+    padding-right: 15px;
+
+}
+
+#home-berliner-bold {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+#home-organisation-bold {
+    font-weight: bold;
+    margin-top: 25px;
+}
+
 #new-org-button {
     position: relative;
     top: 90px;
