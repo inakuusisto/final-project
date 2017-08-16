@@ -96,7 +96,7 @@ export default class Home extends React.Component {
             <h2>Berliner</h2>
             <div id='home-berliner-text'>
             <p>You would like to help but don´t know what kind of donations are needed and where?</p>
-            <p id='home-berliner-bold'>Have a look at the list below</p>
+            <p id='home-berliner-bold'>Have a look at the posts below</p>
             </div>
             </div>
             <div id='home-organisation-container'>
@@ -108,7 +108,7 @@ export default class Home extends React.Component {
             </div>
             </div>
             {this.state.showMoreVisible && <MoreInfo imageUrl={this.state.imageUrl} name={this.state.name} description={this.state.description} closeMoreInfo={this.closeMoreInfo} message={this.state.message} about={this.state.about} address={this.state.address} url={this.state.url} />}
-            <Link to='/register'><button id="new-org-button">New organisation registration</button></Link>
+            <Link to='/register'><button id="new-org-button">Organisation registration</button></Link>
             {posts}
             </div>
         );

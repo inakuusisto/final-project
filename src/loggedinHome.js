@@ -91,6 +91,22 @@ export default class LoggedinHome extends React.Component {
         return (
             <div id='home-container'>
             <NavBarLoggedin />
+            <div id='home-about-container'>
+            <div id='home-berliner-container'>
+            <h2>Berliner</h2>
+            <div id='home-berliner-text'>
+            <p>You would like to help but don´t know what kind of donations are needed and where?</p>
+            <p id='home-berliner-bold'>Have a look at the posts below</p>
+            </div>
+            </div>
+            <div id='home-organisation-container'>
+            <div id='home-organisation-text'>
+            <h2>Organisation</h2>
+            <p>Your organisation would need specific donations?</p>
+            <p id='home-organisation-bold'>Register and make a post</p>
+            </div>
+            </div>
+            </div>
             {this.state.showMoreVisible && <MoreInfo imageUrl={this.state.imageUrl} name={this.state.name} description={this.state.description} closeMoreInfo={this.closeMoreInfo} message={this.state.message} about={this.state.about} address={this.state.address} url={this.state.url} />}
             {posts}
             </div>

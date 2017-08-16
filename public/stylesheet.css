@@ -23,7 +23,7 @@ main {
 
 #home-about-container {
     position: relative;
-    top: 40px;
+    top: 50px;
     left: 450px;
     width: 600px;
     display: flex;
@@ -58,7 +58,7 @@ h2 {
 
 #new-org-button {
     position: relative;
-    top: 90px;
+    top: 120px;
     left: 590px;
     height: 50px;
     width: 300px;
@@ -73,7 +73,7 @@ h2 {
 
 #home-posts-container {
     position: relative;
-    top: 140px;
+    top: 170px;
     left: 430px;
     width: 1000px;
 }
