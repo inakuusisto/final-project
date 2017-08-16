@@ -124,6 +124,11 @@ function deletePost(postId) {
 }
 
 
+function addMessage(organisationId, senderName, senderEmail, header, message) {
+    return db.query ('INSERT INTO messages(organisation_id, sender_name, sender_email, header, private_message) values($1, $2, $3, $4, $5)', [organisationId, senderName, senderEmail, header, message]);
+}
+
+
 module.exports.hashPassword = hashPassword;
 module.exports.addOrganisationData = addOrganisationData;
 module.exports.getOrganisationData = getOrganisationData;
@@ -137,3 +142,4 @@ module.exports.addPost = addPost;
 module.exports.getPostsAndInfo = getPostsAndInfo;
 module.exports.getOwnPosts = getOwnPosts;
 module.exports.deletePost = deletePost;
+module.exports.addMessage = addMessage;

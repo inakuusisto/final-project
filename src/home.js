@@ -12,11 +12,20 @@ export default class Home extends React.Component {
             message: '',
             about: '',
             address: '',
-            url: ''
+            url: '',
+            organisationId: '',
+            senderName: '',
+            senderEmail: '',
+            header: '',
+            privateMessage: ''
         };
 
         this.closeMoreInfo = this.closeMoreInfo.bind(this);
-
+        this.closeContactForm = this.closeContactForm.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.hideThankYou = this.hideThankYou.bind(this);
     }
 
     componentDidMount() {
@@ -50,11 +59,17 @@ export default class Home extends React.Component {
     }
 
 
+    hideThankYou() {
+        this.setState({showThankYou: false})
+    }
+
+
     getComponent(object) {
 
         // alert(object.id);
         this.setState({
             showMoreVisible: true,
+            showContactVisible: false,
             imageUrl: object.image,
             name: object.name,
             description: object.description,
@@ -68,17 +83,70 @@ export default class Home extends React.Component {
 
     startContact(object) {
 
-        alert(object.id);
-        // this.setState({
-        //     showMoreVisible: true,
-        //     imageUrl: object.image,
-        //     name: object.name,
-        //     description: object.description,
-        //     message: object.message,
-        //     about: object.about,
-        //     address: object.address,
-        //     url: object.url
-        // })
+        // alert(object.id);
+        this.setState({
+            showContactVisible: true,
+            organisationId: object.id,
+            showMoreVisible: false
+        })
+    }
+
+    closeContactForm() {
+        this.setState({
+            showContactVisible: false,
+            organisationId: ''
+        })
+    }
+
+
+    handleInputChange(event) {
+        const value = event.target.value;
+        const name = event.target.name;
+
+        this.setState({
+            [name]: value
+        });
+    }
+
+    handleChange(event) {
+        this.setState({
+            privateMessage: event.target.value
+        });
+    }
+
+
+    handleSubmit(event) {
+        event.preventDefault();
+        // alert(this.state.senderName);
+        // alert(this.state.senderEmail);
+        // alert(this.state.header);
+        // alert(this.state.privateMessage);
+        // alert(this.state.organisationId);
+
+        axios.post('/message', {
+            organisationId: this.state.organisationId,
+            senderName: this.state.senderName,
+            senderEmail: this.state.senderEmail,
+            header: this.state.header,
+            privateMessage: this.state.privateMessage
+        })
+        .then(({data}) => {
+            console.log(data);
+            if(data.success) {
+                this.setState({
+                    organisationId: '',
+                    senderName: '',
+                    senderEmail: '',
+                    header: '',
+                    privateMessage: '',
+                    showContactVisible: false,
+                    showThankYou: true
+                })
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
+
     }
 
 
@@ -127,6 +195,8 @@ export default class Home extends React.Component {
             </div>
             </div>
             {this.state.showMoreVisible && <MoreInfo imageUrl={this.state.imageUrl} name={this.state.name} description={this.state.description} closeMoreInfo={this.closeMoreInfo} message={this.state.message} about={this.state.about} address={this.state.address} url={this.state.url} />}
+            {this.state.showContactVisible && <ContactForm handleSubmit={this.handleSubmit} value={this.state.senderName} value={this.state.senderEmail} value={this.state.header} value={this.state.privateMessage} closeContactForm={this.closeContactForm} handleChange={this.handleChange} handleInputChange={this.handleInputChange} />}
+            {this.state.showThankYou && <ThankYou hideThankYou={this.hideThankYou} />}
             <Link to='/register'><button id="new-org-button">Organisation registration</button></Link>
             {posts}
             </div>
@@ -166,6 +236,34 @@ function NavBar() {
 }
 
 
+function ContactForm(props) {
+    return (
+        <div id='contact-form-container'>
+        <p>Send a message to the organisation</p>
+        <div>
+        <form onSubmit={props.handleSubmit}>
+        <input id='description-input' type="text" name="senderName" value={props.senderName} onChange={props.handleInputChange} placeholder="Name" required /><br />
+        <input id='description-input' type="text" name="senderEmail" value={props.senderEmail} onChange={props.handleInputChange} placeholder="Email" required /><br />
+        <input id='description-input' type="text" name="header" value={props.header} onChange={props.handleInputChange} placeholder="Header" required /><br />
+        <textarea id='message-textarea' value={props.privateMessage} onChange={props.handleChange} placeholder="Your message..." required /><br />
+        <input id="post-button" type="submit" value="Send" />
+        </form>
+        <p id="hide-more-info" onClick={props.closeContactForm}>Close</p>
+        </div>
+        </div>
+    );
+}
+
+
+function ThankYou(props) {
+    return (
+        <div id='more-info-container'>
+        <p id="hide-thank-you" onClick={props.hideThankYou}>X</p>
+        <p>Thank you for your message!</p>
+        <p>It has been sent to the organisation.</p>
+        </div>
+    );
+}
 
 
 

@@ -79,6 +79,18 @@ app.get('/posts', function(req, res) {
 });
 
 
+app.post('/message', function (req, res) {
+    console.log('#####', req.body);
+    functions.addMessage(req.body.organisationId, req.body.senderName, req.body.senderEmail, req.body.header, req.body.privateMessage).then(function() {
+        res.json({
+            success: true
+        });
+    }).catch(function(err) {
+        console.log(err);
+    });
+});
+
+
 app.post('/register', function(req, res) {
     // console.log('tämä on request', req.body);
 
@@ -184,6 +196,7 @@ app.post('/url', function(req, res) {
         console.log(err);
     });
 });
+
 
 app.post('/about', function(req, res) {
     // console.log('#####', req.body.about);
