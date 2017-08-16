@@ -26,6 +26,11 @@ export default class Inbox extends React.Component {
     }
 
 
+    // componentDidUpdate() {
+    //     window.scrollTo(0,0);
+    // }
+
+
     showMessage(object) {
 
         // alert(object.subject);

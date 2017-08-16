@@ -261,10 +261,12 @@ function ContactForm(props) {
 
 function ThankYou(props) {
     return (
-        <div id='more-info-container'>
+        <div id='thank-you-container'>
         <p id="hide-thank-you" onClick={props.hideThankYou}>X</p>
-        <p>Thank you for your message!</p>
+        <div id='thank-you-text-container'>
+        <p id='thank-you-text'>Thank you for your message!</p>
         <p>It has been sent to the organisation.</p>
+        </div>
         </div>
     );
 }
