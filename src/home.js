@@ -235,7 +235,7 @@ function NavBar() {
     return (
         <div id='nav-header-container'>
         <img id='logo' src='../images/logo.png' />
-        <p id='nav-heading'>Bliiblaa</p>
+        <p id='nav-heading'>Donate.Berlin</p>
         </div>
     );
 }

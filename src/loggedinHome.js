@@ -234,7 +234,7 @@ export function NavBarLoggedin() {
     return (
         <div id='nav-header-container'>
         <img id='logo' src='../images/logo.png' />
-        <p id='nav-heading'>Bliiblaa</p>
+        <p id='nav-heading'>Donate.Berlin</p>
         <ul>
         <li><Link to='/'>Home</Link></li>
         <li><Link to='/profile'>Profile</Link></li>
