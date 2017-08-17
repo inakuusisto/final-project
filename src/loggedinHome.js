@@ -70,6 +70,7 @@ export default class Home extends React.Component {
         this.setState({
             showMoreVisible: true,
             showContactVisible: false,
+            showThankYou: false,
             imageUrl: object.image,
             name: object.name,
             description: object.description,
@@ -89,7 +90,8 @@ export default class Home extends React.Component {
             organisationId: object.id,
             imageUrl: object.image,
             name: object.name,
-            showMoreVisible: false
+            showMoreVisible: false,
+            showThankYou: false
         })
     }
 
@@ -158,7 +160,7 @@ export default class Home extends React.Component {
         console.log(this.state.posts);
 
         const posts = (
-            <div id='home-posts-container'>
+            <div id='loggedin-home-posts-container'>
             {this.state.posts.map((post) =>
                 <div className='home-post-container'>
                 <img className='home-posts-image' src={post.image ? post.image : '../images/profile.png'} alt={post.name} />
@@ -197,7 +199,6 @@ export default class Home extends React.Component {
             {this.state.showMoreVisible && <MoreInfo imageUrl={this.state.imageUrl} name={this.state.name} description={this.state.description} closeMoreInfo={this.closeMoreInfo} message={this.state.message} about={this.state.about} address={this.state.address} url={this.state.url} />}
             {this.state.showContactVisible && <ContactForm imageUrl={this.state.imageUrl} name={this.state.name} handleSubmit={this.handleSubmit} value={this.state.senderName} value={this.state.senderEmail} value={this.state.subject} value={this.state.privateMessage} closeContactForm={this.closeContactForm} handleChange={this.handleChange} handleInputChange={this.handleInputChange} />}
             {this.state.showThankYou && <ThankYou hideThankYou={this.hideThankYou} />}
-            <Link to='/register'><button id="new-org-button">Organisation registration</button></Link>
             {posts}
             </div>
         );
@@ -208,7 +209,10 @@ export default class Home extends React.Component {
 function MoreInfo(props) {
     return (
         <div id='more-info-container'>
+        <div id='more-info-image-text-container'>
         <img id='more-info-image' src={props.imageUrl} alt={props.name} />
+        <p id='contact-form-name'>{props.name}</p>
+        </div>
         <div id='more-text'>
         <p id='more-info-description'>{props.description}</p>
         <p id='more-info-message'>{props.message}</p>

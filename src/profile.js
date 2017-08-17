@@ -61,7 +61,6 @@ export default class Profile extends React.Component {
         });
     }
 
-
     showEditAddress() {
         this.setState({editAddressVisible: true})
     }
@@ -308,7 +307,7 @@ export default class Profile extends React.Component {
             </div>
             <div id='clear'></div>
             {this.state.showPost && <Post postDescription={this.state.postDescription} postMessage={this.state.postMessage} profilePicUrl={this.state.profilePicUrl} name={this.state.name} />}
-            <MakePost handleSubmit={this.handleSubmit} value={this.state.messageInput} value={this.state.description} handleChange={this.handleChange} handleInputChange={this.handleInputChange} />
+            <MakePost handleSubmit={this.handleSubmit} description={this.state.description} messageInput={this.state.messageInput} handleChange={this.handleChange} handleInputChange={this.handleInputChange} />
             {ownPosts}
             </div>
         );

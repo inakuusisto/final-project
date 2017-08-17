@@ -78,6 +78,13 @@ h2 {
     width: 1000px;
 }
 
+#loggedin-home-posts-container {
+    position: relative;
+    top: 130px;
+    left: 430px;
+    width: 1000px;
+}
+
 .home-post-container {
     margin-bottom: 40px;
     width: 600px;
@@ -114,6 +121,7 @@ h2 {
     margin-top: 40px;
     float: left;
     cursor: pointer;
+    margin-left: 270px;
 }
 
 .home-contact {
@@ -138,17 +146,20 @@ h2 {
     overflow: hidden;
 }
 
+#more-info-image-text-container {
+    float: left;
+    display: inline-block;
+}
+
 #more-info-image {
     width: 200px;
     height: 200px;
-    float: left;
-    display: inline-block;
 }
 
 #more-text {
     float: left;
     display: inline-block;
-    margin-left: 60px;
+    margin-left: 70px;
     width: 400px;
 }
 
@@ -159,8 +170,10 @@ h2 {
 
 #hide-more-info {
     cursor: pointer;
-    font-size: 20px;
-    margin-top: 20px;
+    font-size: 18px;
+    position: absolute;
+    right: 50px;
+    bottom: 20px;
     text-decoration: underline;
 }
 
@@ -647,4 +660,9 @@ h3 {
 
 .whole-message-message {
     margin-top: 75px;
+}
+
+
+.private-message-subjects {
+    color: blue;
 }

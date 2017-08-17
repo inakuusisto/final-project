@@ -70,6 +70,7 @@ export default class Home extends React.Component {
         this.setState({
             showMoreVisible: true,
             showContactVisible: false,
+            showThankYou: false,
             imageUrl: object.image,
             name: object.name,
             description: object.description,
@@ -89,7 +90,8 @@ export default class Home extends React.Component {
             organisationId: object.id,
             imageUrl: object.image,
             name: object.name,
-            showMoreVisible: false
+            showMoreVisible: false,
+            showThankYou: false
         })
     }
 
@@ -208,7 +210,10 @@ export default class Home extends React.Component {
 function MoreInfo(props) {
     return (
         <div id='more-info-container'>
+        <div id='more-info-image-text-container'>
         <img id='more-info-image' src={props.imageUrl} alt={props.name} />
+        <p id='contact-form-name'>{props.name}</p>
+        </div>
         <div id='more-text'>
         <p id='more-info-description'>{props.description}</p>
         <p id='more-info-message'>{props.message}</p>
