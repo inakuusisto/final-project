@@ -103,6 +103,7 @@ h2 {
     height: 100px;
     float: left;
     display: inline-block;
+    /*object-fit: cover;*/
 }
 
 .home-post-text {
@@ -430,7 +431,7 @@ ul a:hover {
     height: 300px;
     display: inline-block;
     float: left;
-    object-fit: cover;
+    /*object-fit: cover;*/
     margin-top: 50px;
 }
 
@@ -665,6 +666,7 @@ h3 {
     margin-left: 5px;
     margin-bottom: 10px;
     float: left;
+    width: 200px;
 }
 
 .private-message-timestamp-unread {

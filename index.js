@@ -342,12 +342,6 @@ app.get('*', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
-// app.get('*', function(req, res) {
-//     res.redirect('/home');
-//     res.sendFile(__dirname + '/index.html');
-// });
-
-
 app.listen(8080, function() {
     console.log("I'm listening.")
 });
