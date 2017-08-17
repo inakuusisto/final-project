@@ -15,7 +15,7 @@ export default class Inbox extends React.Component {
     componentDidMount() {
 
         axios.get('/privatemessages').then(({data}) => {
-            // console.log('messages', data);
+            console.log('messages', data);
             this.setState({
                 privateMessages: data
             })
@@ -26,22 +26,30 @@ export default class Inbox extends React.Component {
     }
 
 
-    // componentDidUpdate() {
-    //     window.scrollTo(0,0);
-    // }
-
-
     showMessage(object) {
 
-        // alert(object.subject);
-        this.setState({
-            showWholeMessage: true,
-            subject: object.subject,
-            senderName: object.sender_name,
-            senderEmail: object.sender_email,
-            date: object.timestamp,
-            message: object.private_message
+        // alert(object.id);
+
+        axios.post('/messageread', {
+            messageId: object.id,
+            status: 2
         })
+        .then(({data}) => {
+            // console.log(data.messages);
+            if(data.success) {
+                this.setState({
+                    privateMessages: data.messages,
+                    showWholeMessage: true,
+                    subject: object.subject,
+                    senderName: object.sender_name,
+                    senderEmail: object.sender_email,
+                    date: object.timestamp,
+                    message: object.private_message
+                })
+            }
+        }).catch(function (error) {
+            console.log(error);
+        });
     }
 
     render(props) {
@@ -56,37 +64,37 @@ export default class Inbox extends React.Component {
         const privateMessages = (
             <div id='private-messages-container'>
             {this.state.privateMessages.map((message) => {
-                if (message.private_message == 'kuusisto') {
+                if (message.status == 1) {
+                    return <div className='private-message-container-unread' onClick={this.showMessage.bind(this, message)}>
+                    <div>
+                    <p className='private-message-subject-unread'>{message.subject}</p>
+                    <p className='private-message-timestamp-unread'>{new Date(message.timestamp).toLocaleDateString()}</p>
+                    <p className='private-message-sender-unread'>{message.sender_name}</p>
+                    </div>
+                    </div>
+                } else {
                     return <div className='private-message-container' onClick={this.showMessage.bind(this, message)}>
                     <div>
-                    <p className='private-message-subjects'>{message.subject}</p>
+                    <p className='private-message-subject'>{message.subject}</p>
                     <p className='private-message-timestamp'>{new Date(message.timestamp).toLocaleDateString()}</p>
                     <p className='private-message-sender'>{message.sender_name}</p>
                     </div>
                     </div>
-                } else {
-                 return <div className='private-message-container' onClick={this.showMessage.bind(this, message)}>
-                <div>
-                <p className='private-message-subject'>{message.subject}</p>
-                <p className='private-message-timestamp'>{new Date(message.timestamp).toLocaleDateString()}</p>
-                <p className='private-message-sender'>{message.sender_name}</p>
-                </div>
-                </div>
+                }
             }
-        }
-            )}
-            </div>
-        )
+        )}
+        </div>
+    )
 
-        return (
-            <div id='inbox-container'>
-            <NavBarLoggedin />
-            {privateMessages}
-            {this.state.showWholeMessage && <WholeMessage subject={this.state.subject} senderName={this.state.senderName} senderEmail={this.state.senderEmail} date={this.state.date} message={this.state.message} />}
-            <div id='clear'></div>
-            </div>
-        );
-    }
+    return (
+        <div id='inbox-container'>
+        <NavBarLoggedin />
+        {privateMessages}
+        {this.state.showWholeMessage && <WholeMessage subject={this.state.subject} senderName={this.state.senderName} senderEmail={this.state.senderEmail} date={this.state.date} message={this.state.message} />}
+        <div id='clear'></div>
+        </div>
+    );
+}
 }
 
 

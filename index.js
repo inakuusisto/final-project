@@ -81,7 +81,7 @@ app.get('/posts', function(req, res) {
 
 app.post('/message', function (req, res) {
     console.log('#####', req.body);
-    functions.addMessage(req.body.organisationId, req.body.senderName, req.body.senderEmail, req.body.subject, req.body.privateMessage).then(function() {
+    functions.addMessage(req.body.organisationId, req.body.senderName, req.body.senderEmail, req.body.subject, req.body.privateMessage, 1).then(function() {
         res.json({
             success: true
         });
@@ -292,6 +292,23 @@ app.get('/privatemessages', function(req, res) {
     functions.getPrivateMessages(req.session.user.organisationId).then(function(data) {
         console.log(data);
         res.json(data.rows);
+    }).catch(function(err) {
+        console.log(err);
+    });
+});
+
+
+app.post('/messageread', function (req, res) {
+    // console.log('#####', req.body.messageId, req.body.status);
+    functions.updateMessageStatus(req.body.status, req.body.messageId).then(function(data) {
+        functions.getPrivateMessages(req.session.user.organisationId).then(function(data) {
+            res.json({
+                success: true,
+                messages: data.rows
+            });
+        }).catch(function(err) {
+            console.log(err);
+        });
     }).catch(function(err) {
         console.log(err);
     });

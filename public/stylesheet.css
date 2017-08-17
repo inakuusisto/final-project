@@ -607,7 +607,7 @@ h3 {
     width: 300px;
     border: 1px solid #444444;
     border-radius: 10px;
-    background-color: white;
+    background-color: #D3D3D3;;
     padding-top: 20px;
     padding-bottom: 20px;
     padding-left: 5px;
@@ -622,7 +622,6 @@ h3 {
 }
 
 .private-message-subject {
-    font-weight: bold;
     margin-left: 5px;
     margin-bottom: 10px;
     float: left;
@@ -634,6 +633,41 @@ h3 {
 }
 
 .private-message-sender {
+    margin-left: 5px;
+    clear: both;
+}
+
+
+.private-message-container-unread {
+    background-color: white;
+    margin-bottom: 40px;
+    width: 300px;
+    border: 1px solid #444444;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-left: 5px;
+    overflow: hidden;
+    margin-left: 27px;
+    cursor: pointer;
+}
+
+
+.private-message-subject-unread {
+    font-weight: bold;
+    margin-left: 5px;
+    margin-bottom: 10px;
+    float: left;
+}
+
+.private-message-timestamp-unread {
+    font-weight: bold;
+    float: right;
+    margin-right: 8px;
+}
+
+.private-message-sender-unread {
+    font-weight: bold;
     margin-left: 5px;
     clear: both;
 }
@@ -660,9 +694,4 @@ h3 {
 
 .whole-message-message {
     margin-top: 75px;
-}
-
-
-.private-message-subjects {
-    color: blue;
 }

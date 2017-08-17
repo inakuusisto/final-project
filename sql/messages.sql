@@ -7,5 +7,6 @@ CREATE TABLE messages (
     sender_email VARCHAR(100) NOT NULL,
     subject TEXT NOT NULL,
     private_message TEXT NOT NULL,
+    status INTEGER NOT NULL,
     timestamp TIMESTAMP DEFAULT NOW()
 );
