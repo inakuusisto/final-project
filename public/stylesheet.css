@@ -24,8 +24,8 @@ main {
 #home-about-container {
     position: relative;
     top: 50px;
-    left: 450px;
-    width: 600px;
+    left: 420px;
+    width: 700px;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -36,24 +36,25 @@ h2 {
 }
 
 #home-berliner-text {
-    width: 300px;
-    padding-right: 30px;
+    width: 350px;
+    padding-right: 40px;
+    font-size: 18px;
 }
 
 #home-organisation-text {
     padding-left: 10px;
     padding-right: 15px;
-
+    font-size: 18px;
 }
 
 #home-berliner-bold {
     font-weight: bold;
-    margin-top: 10px;
+    margin-top: 30px;
 }
 
 #home-organisation-bold {
     font-weight: bold;
-    margin-top: 27px;
+    margin-top: 46px;
 }
 
 #new-org-button {
@@ -223,6 +224,7 @@ h2 {
     border: 1px solid #444444;
     border-radius: 10px;
     margin-top: 15px;
+    font-size: 12px;
 }
 
 #contact-form-textarea {
@@ -232,6 +234,7 @@ h2 {
     box-shadow: 0 0 0 1px #444444;
     border: 1px solid transparent;
     margin-top: 30px;
+    font-size: 12px;
 }
 
 #thank-you-container {
@@ -291,6 +294,7 @@ h2 {
     width: 300px;
     border: 1px solid #ccc;
     border-radius: 10px;
+    font-size: 12px;
 }
 
 .reg-button {
@@ -508,6 +512,7 @@ h3 {
     width: 400px;
     border: 2px solid #444444;
     border-radius: 10px;
+    font-size: 12px;
 }
 
 #message-textarea {
@@ -517,6 +522,7 @@ h3 {
     box-shadow: 0 0 0 2px #444444;
     border: 5px solid transparent;
     margin-top: 30px;
+    font-size: 12px;
 }
 
 #post-button {
@@ -602,20 +608,6 @@ h3 {
     margin-top: 90px;
 }
 
-.private-message-container {
-    margin-bottom: 40px;
-    width: 300px;
-    border: 1px solid #444444;
-    border-radius: 10px;
-    background-color: #D3D3D3;;
-    padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 5px;
-    overflow: hidden;
-    margin-left: 27px;
-    cursor: pointer;
-}
-
 .home-post-description {
     font-weight: bold;
     margin-bottom: 10px;
@@ -625,6 +617,7 @@ h3 {
     margin-left: 5px;
     margin-bottom: 10px;
     float: left;
+    width: 200px;
 }
 
 .private-message-timestamp {
@@ -637,21 +630,35 @@ h3 {
     clear: both;
 }
 
-
-.private-message-container-unread {
-    background-color: white;
+.private-message-container {
+    position: relative;
     margin-bottom: 40px;
-    width: 300px;
+    width: 350px;
     border: 1px solid #444444;
     border-radius: 10px;
+    background-color: #D3D3D3;;
     padding-top: 20px;
-    padding-bottom: 20px;
-    padding-left: 5px;
+    padding-bottom: 50px;
+    padding-left: 10px;
     overflow: hidden;
-    margin-left: 27px;
+    margin-left: 45px;
     cursor: pointer;
 }
 
+.private-message-container-unread {
+    position: relative;
+    background-color: white;
+    margin-bottom: 40px;
+    width: 350px;
+    border: 1px solid #444444;
+    border-radius: 10px;
+    padding-top: 20px;
+    padding-bottom: 50px;
+    padding-left: 10px;
+    overflow: hidden;
+    margin-left: 45px;
+    cursor: pointer;
+}
 
 .private-message-subject-unread {
     font-weight: bold;
@@ -694,4 +701,12 @@ h3 {
 
 .whole-message-message {
     margin-top: 75px;
+}
+
+.delete-message {
+    cursor: pointer;
+    text-decoration: underline;
+    position: absolute;
+    right: 25px;
+    margin-top: 15px;
 }

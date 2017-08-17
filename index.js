@@ -315,6 +315,20 @@ app.post('/messageread', function (req, res) {
 });
 
 
+app.post('/deletemessage', function(req, res) {
+    // console.log('#####', req.body);
+    functions.deleteMessage(req.body.messageId).then(function(results) {
+        functions.getPrivateMessages(results.rows[0].organisation_id).then(function(data) {
+            res.json(data.rows);
+        }).catch(function(err) {
+            console.log(err);
+        });
+    }).catch(function(err) {
+        console.log(err);
+    });
+});
+
+
 app.get('/logout', function(req, res) {
     req.session = null;
     res.redirect('/home');

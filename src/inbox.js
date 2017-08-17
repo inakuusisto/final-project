@@ -52,6 +52,25 @@ export default class Inbox extends React.Component {
         });
     }
 
+
+    deleteMessage(object) {
+
+        axios.post('/deletemessage', {
+            messageId: object.id
+        })
+        .then(({data}) => {
+            console.log(data);
+            this.setState({
+                privateMessages: data
+            })
+        }).catch((error) => {
+            console.log(error);
+        });
+
+    }
+
+
+
     render(props) {
 
         if(!this.state.privateMessages) {
@@ -70,6 +89,7 @@ export default class Inbox extends React.Component {
                     <p className='private-message-subject-unread'>{message.subject}</p>
                     <p className='private-message-timestamp-unread'>{new Date(message.timestamp).toLocaleDateString()}</p>
                     <p className='private-message-sender-unread'>{message.sender_name}</p>
+                    <p className='delete-message' onClick={this.deleteMessage.bind(this, message)}>Delete</p>
                     </div>
                     </div>
                 } else {
@@ -78,6 +98,7 @@ export default class Inbox extends React.Component {
                     <p className='private-message-subject'>{message.subject}</p>
                     <p className='private-message-timestamp'>{new Date(message.timestamp).toLocaleDateString()}</p>
                     <p className='private-message-sender'>{message.sender_name}</p>
+                    <p className='delete-message' onClick={this.deleteMessage.bind(this, message)}>Delete</p>
                     </div>
                     </div>
                 }

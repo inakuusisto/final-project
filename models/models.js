@@ -136,6 +136,10 @@ function updateMessageStatus(status, messageId) {
     return db.query ('UPDATE messages SET status=$1 WHERE id=$2',[status, messageId]);
 }
 
+function deleteMessage(messageId) {
+    return db.query ('DELETE FROM messages WHERE id=$1 returning organisation_id', [messageId]);
+}
+
 
 module.exports.hashPassword = hashPassword;
 module.exports.addOrganisationData = addOrganisationData;
@@ -153,3 +157,4 @@ module.exports.deletePost = deletePost;
 module.exports.addMessage = addMessage;
 module.exports.getPrivateMessages = getPrivateMessages;
 module.exports.updateMessageStatus = updateMessageStatus;
+module.exports.deleteMessage = deleteMessage;

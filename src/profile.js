@@ -286,7 +286,7 @@ export default class Profile extends React.Component {
             <p id='organisation-name'>{this.state.name}</p>
             <p className='profile-tag'>Contact person:</p>
             <p> {this.state.contactFirst} {this.state.contactLast}</p>
-            <p id='more-info-text'>Feel free to share some more information about your organisation when the users click on your post on the home-page</p>
+            <p id='more-info-text'>Share some more information about your organisation on the home-page</p>
             <p className='profile-tag'>Address:</p>
             {!this.state.address && <p className='profile-edit' onClick={this.showEditAddress}>Add address</p>}
             {this.state.address && <p>{this.state.address}</p>}
