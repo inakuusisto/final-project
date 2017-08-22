@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import axios from 'axios';
+import axios from './axios';
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -29,7 +29,7 @@ export default class Home extends React.Component {
     }
 
     componentDidMount() {
-
+        console.log('hello');
         axios.get('/posts').then(({data}) => {
             console.log(data);
             this.setState({

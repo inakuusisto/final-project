@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router';
-import axios from 'axios';
+import axios from './axios';
 
 export default class Home extends React.Component {
     constructor(props) {

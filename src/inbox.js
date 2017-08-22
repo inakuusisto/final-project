@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+import axios from './axios';
 const awsS3Url = "https://s3.amazonaws.com/inafinal";
 import { Link } from 'react-router';
 import { NavBarLoggedin } from './loggedinHome';
