@@ -350,6 +350,4 @@ app.get('*', function(req, res) {
     res.sendFile(__dirname + '/index.html');
 });
 
-app.listen(8080, function() {
-    console.log("I'm listening.")
-});
+app.listen(process.env.PORT || 8080, function() {console.log('listening');});
