@@ -227,8 +227,6 @@ export default class Profile extends React.Component {
 
     handleSubmit(event) {
         event.preventDefault();
-        // alert('Value ' + this.state.messageInput);
-        // alert('Value ' + this.state.description);
 
         axios.post('/post', {
             organisationId: this.state.organisationId,
@@ -388,22 +386,3 @@ function Post(props) {
         </div>
     )
 }
-
-
-
-
-//
-//
-// const ownPosts = (
-//     <div id='home-posts-container'>
-//     {this.state.ownPosts.map((post) =>
-//         <div className='home-post-container'>
-//         <img className='home-posts-image' src={this.state.profilePicUrl} alt={this.state.name} />
-//         <div className='home-post-text'>
-//         <p className='home-post-description'>{post.description}</p>
-//         <p>{post.message}</p>
-//         </div>
-//         </div>
-//     )}
-//     </div>
-// )

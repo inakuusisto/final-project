@@ -10,6 +10,8 @@ const path = require('path');
 const awsS3Url = "https://s3.amazonaws.com/inafinal";
 const csurf = require('csurf');
 
+//      SETUP
+
 if (process.env.NODE_ENV != 'production') {
     app.use(require('./build'));
 }
@@ -54,6 +56,10 @@ var uploader = multer({
         filesize: 2097152
     }
 });
+
+
+
+//      Routes
 
 
 app.get('/home', function(req, res){
@@ -126,7 +132,6 @@ app.post('/register', function(req, res) {
 
 
 app.post('/login', function(req, res) {
-    // console.log('tämä on request', req.body);
 
     functions.getOrganisationData(req.body.email).then(function(results) {
         functions.checkPassword(req.body.password, results.rows[0].password).then(function(doesMatch) {
@@ -156,9 +161,7 @@ app.post('/login', function(req, res) {
 
 
 app.get('/organisation', function(req, res) {
-    // console.log('######organisation')
     functions.getOrganisationData(req.session.user.email).then(function(results) {
-        // console.log('These are the results', results.rows[0]);
         res.json(results.rows[0]);
     }).catch(function(err) {
         console.log(err);
@@ -167,7 +170,6 @@ app.get('/organisation', function(req, res) {
 
 
 app.get('/ownposts', function(req, res) {
-    // console.log('####ownposts');
     functions.getOwnPosts(req.session.user.organisationId).then(function(data) {
         for (var i=0; i<data.rows.length; i++) {
             if (data.rows[i].image) {
@@ -194,7 +196,6 @@ app.post('/address', function(req, res) {
 
 
 app.post('/url', function(req, res) {
-    // console.log(req.body.url)
     functions.updateUrl(req.body.url, req.session.user.organisationId).then(function(results) {
         res.json({
             success: true,
@@ -207,7 +208,6 @@ app.post('/url', function(req, res) {
 
 
 app.post('/about', function(req, res) {
-    // console.log('#####', req.body.about);
     functions.updateAbout(req.body.about, req.session.user.organisationId).then(function(results) {
         res.json({
             success: true,
@@ -241,7 +241,6 @@ app.post('/post', function (req, res) {
     // console.log(req.body);
     functions.addPost(req.body.organisationId, req.body.description, req.body.message).then(function(results) {
         functions.getOwnPosts(req.body.organisationId).then(function(data) {
-            // console.log('nämä on omat posts', data.rows);
             for (var i=0; i<data.rows.length; i++) {
                 if (data.rows[i].image) {
                     data.rows[i].image = awsS3Url + '/' + data.rows[i].image;
@@ -261,24 +260,8 @@ app.post('/post', function (req, res) {
     });
 });
 
-//                  TÄMÄ TOIMII
-//
-// app.post('/post', function (req, res) {
-//     console.log(req.body);
-//     functions.addPost(req.body.organisationId, req.body.description, req.body.message).then(function() {
-//         res.json({
-//             success: true,
-//             description: req.body.description,
-//             message: req.body.message
-//         });
-//     }).catch(function(err) {
-//         console.log(err);
-//     });
-// });
-
 
 app.post('/delete', function(req, res) {
-    // console.log('#####', req.body.postId);
     functions.deletePost(req.body.postId).then(function(results) {
         functions.getOwnPosts(results.rows[0].organisation_id).then(function(data) {
             for (var i=0; i<data.rows.length; i++) {
@@ -307,7 +290,6 @@ app.get('/privatemessages', function(req, res) {
 
 
 app.post('/messageread', function (req, res) {
-    // console.log('#####', req.body.messageId, req.body.status);
     functions.updateMessageStatus(req.body.status, req.body.messageId).then(function(data) {
         functions.getPrivateMessages(req.session.user.organisationId).then(function(data) {
             res.json({
@@ -324,7 +306,6 @@ app.post('/messageread', function (req, res) {
 
 
 app.post('/deletemessage', function(req, res) {
-    // console.log('#####', req.body);
     functions.deleteMessage(req.body.messageId).then(function(results) {
         functions.getPrivateMessages(results.rows[0].organisation_id).then(function(data) {
             res.json(data.rows);
