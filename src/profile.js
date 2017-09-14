@@ -119,7 +119,7 @@ export default class Profile extends React.Component {
             postId: object.id
         })
         .then(({data}) => {
-            console.log(data);
+            // console.log(data);
             this.setState({
                 ownPosts: data
             })
@@ -137,7 +137,7 @@ export default class Profile extends React.Component {
             address: this.state.addressInput
         })
         .then(({data}) => {
-            console.log(data);
+            // console.log(data);
             if(data.success) {
                 this.setState({
                     editAddressVisible: false,
@@ -159,7 +159,7 @@ export default class Profile extends React.Component {
             url: this.state.urlInput
         })
         .then(({data}) => {
-            console.log(data);
+            // console.log(data);
             if(data.success) {
                 this.setState({
                     editUrlVisible: false,
@@ -179,7 +179,7 @@ export default class Profile extends React.Component {
             about: this.state.aboutInput
         })
         .then(({data}) => {
-            console.log(data);
+            // console.log(data);
             if(data.success) {
                 this.setState({
                     editAboutVisible: false,
@@ -234,7 +234,7 @@ export default class Profile extends React.Component {
             message: this.state.messageInput
         })
         .then(({data}) => {
-            console.log(data);
+            // console.log(data);
             if(data.success) {
                 this.setState({
                     showPost: true,
@@ -258,7 +258,7 @@ export default class Profile extends React.Component {
             return null;
         }
 
-        console.log(this.state.ownPosts);
+        // console.log(this.state.ownPosts);
 
         const ownPosts = (
             <div id='profile-posts-container'>

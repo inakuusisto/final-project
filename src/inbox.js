@@ -15,7 +15,7 @@ export default class Inbox extends React.Component {
     componentDidMount() {
 
         axios.get('/privatemessages').then(({data}) => {
-            console.log('messages', data);
+            // console.log('messages', data);
             this.setState({
                 privateMessages: data
             })
@@ -59,7 +59,7 @@ export default class Inbox extends React.Component {
             messageId: object.id
         })
         .then(({data}) => {
-            console.log(data);
+            // console.log(data);
             this.setState({
                 privateMessages: data
             })
@@ -77,7 +77,7 @@ export default class Inbox extends React.Component {
             return null;
         }
 
-        console.log(this.state.privateMessages);
+        // console.log(this.state.privateMessages);
 
 
         const privateMessages = (

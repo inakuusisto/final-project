@@ -29,9 +29,9 @@ export default class Home extends React.Component {
     }
 
     componentDidMount() {
-        console.log('hello');
+        // console.log('hello');
         axios.get('/posts').then(({data}) => {
-            console.log(data);
+            // console.log(data);
             this.setState({
                 posts: data
             })
@@ -132,7 +132,7 @@ export default class Home extends React.Component {
             privateMessage: this.state.privateMessage
         })
         .then(({data}) => {
-            console.log(data);
+            // console.log(data);
             if(data.success) {
                 this.setState({
                     organisationId: '',
@@ -157,7 +157,7 @@ export default class Home extends React.Component {
             return null;
         }
 
-        console.log(this.state.posts);
+        // console.log(this.state.posts);
 
         const posts = (
             <div id='loggedin-home-posts-container'>
