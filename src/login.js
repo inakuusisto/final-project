@@ -49,14 +49,14 @@ export default class Login extends React.Component {
     render() {
         return (
             <div id='login-container'>
-            <img id='login-logo' src='../images/logo.png' />
-            {this.state.error && <p className="error-message">Something went wrong. Please try again!</p>}
-            <h1 id='login-header'>Please log in</h1>
-            <form onSubmit={this.handleSubmit}>
-            <input className='reg-input' type="text" name="email" value={this.state.email} onChange={this.handleInputChange} placeholder="Email" required /><br />
-            <input className='reg-input' type='password' name="password" value={this.state.password} onChange={this.handleInputChange} placeholder="Password" required /><br />
-            <input className='reg-button' type="submit" value="Login" />
-            </form>
+                <img id='login-logo' src='../images/logo.png' />
+                {this.state.error && <p className="error-message">Something went wrong. Please try again!</p>}
+                <h1 id='login-header'>Please log in</h1>
+                <form onSubmit={this.handleSubmit}>
+                    <input className='reg-input' type="text" name="email" value={this.state.email} onChange={this.handleInputChange} placeholder="Email" required /><br />
+                    <input className='reg-input' type='password' name="password" value={this.state.password} onChange={this.handleInputChange} placeholder="Password" required /><br />
+                    <input className='reg-button' type="submit" value="Login" />
+                </form>
             </div>
 
         );

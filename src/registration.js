@@ -56,19 +56,19 @@ export default class Registration extends React.Component {
     render() {
         return (
             <div id='reg-container'>
-            <img id='login-logo' src='../images/logo.png' />
-            <h1 id='reg-header'>Welcome to register to our site!</h1>
-            <p id='reg-text'>Please fill out the following information</p>
-            {this.state.error && <p className="error-message">Oops, something went wrong. Please try again!</p>}
-            <form onSubmit={this.handleSubmit}>
-            <input className='reg-input' type="text" name="name" value={this.state.name} onChange={this.handleInputChange} placeholder="Organisation name" required /><br />
-            <input className='reg-input' type="text" name="contactFirst" value={this.state.contactFirst} onChange={this.handleInputChange} placeholder="Contact - First name" required /><br />
-            <input className='reg-input' type="text" name="contactLast" value={this.state.contactLast} onChange={this.handleInputChange} placeholder="Contact - Last name" required /><br />
-            <input className='reg-input' type="text" name="email" value={this.state.email} onChange={this.handleInputChange} placeholder="Email" required /><br />
-            <input className='reg-input' type='password' name="password" value={this.state.password} onChange={this.handleInputChange} placeholder="Password" required /><br />
-            <input className='reg-button' type="submit" value="Submit" />
-            </form>
-            <p>If you already have an account, please <Link to='/login'>Login</Link></p>
+                <img id='login-logo' src='../images/logo.png' />
+                <h1 id='reg-header'>Welcome to register to our site!</h1>
+                <p id='reg-text'>Please fill out the following information</p>
+                {this.state.error && <p className="error-message">Oops, something went wrong. Please try again!</p>}
+                <form onSubmit={this.handleSubmit}>
+                    <input className='reg-input' type="text" name="name" value={this.state.name} onChange={this.handleInputChange} placeholder="Organisation name" required /><br />
+                    <input className='reg-input' type="text" name="contactFirst" value={this.state.contactFirst} onChange={this.handleInputChange} placeholder="Contact - First name" required /><br />
+                    <input className='reg-input' type="text" name="contactLast" value={this.state.contactLast} onChange={this.handleInputChange} placeholder="Contact - Last name" required /><br />
+                    <input className='reg-input' type="text" name="email" value={this.state.email} onChange={this.handleInputChange} placeholder="Email" required /><br />
+                    <input className='reg-input' type='password' name="password" value={this.state.password} onChange={this.handleInputChange} placeholder="Password" required /><br />
+                    <input className='reg-button' type="submit" value="Submit" />
+                </form>
+                <p>If you already have an account, please <Link to='/login'>Login</Link></p>
             </div>
 
         );

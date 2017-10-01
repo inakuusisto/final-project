@@ -7,9 +7,9 @@ let secrets;
 var db = spicedPg(process.env.DATABASE_URL || `postgres:${require('../secrets.json').name}:${require('../secrets.json').pass}@localhost:5432/final`);
 
 if (process.env.NODE_ENV == 'production') {
-    secrets = process.env; // in prod the secrets are environment variables
+    secrets = process.env;
 } else {
-    secrets = require('../secrets.json'); // secrets.json is in .gitignore
+    secrets = require('../secrets.json');
 }
 const client = knox.createClient({
     key: secrets.AWS_KEY || process.env.AWS_KEY,

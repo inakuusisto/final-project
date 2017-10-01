@@ -24,9 +24,9 @@ if (location.pathname == '/home') {
 
     const router = (
         <Router history={browserHistory}>
-        <Route path="/" component={LoggedinHome} />
-        <Route path="/profile" component={Profile} />
-        <Route path="/inbox" component={Inbox} />
+            <Route path="/" component={LoggedinHome} />
+            <Route path="/profile" component={Profile} />
+            <Route path="/inbox" component={Inbox} />
         </Router>
     );
 
